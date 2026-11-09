@@ -237,9 +237,8 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
     }
 
     var _portrait_w = scr_portrait_width(_portrait_spr);
-		    scr_draw_portrait(secondary_portrait_spr[page], secondary_image[page], _sec_anchor_x + _sec_portrait_w / 2 + _sec_portrait_x_adjust,
-		        _sec_portrait_y + _sec_portrait_y_adjust, secondary_side[page] * _sec_draw_portrait_scale,
-		        _sec_draw_portrait_scale, 1);
+    scr_draw_portrait(_portrait_spr, global.speaker_image[page], _portrait_x + _portrait_w * _base_scale / 2,
+        textbox_y + border + 8 + _portrait_y_adjust, global.speaker_side[page] * _draw_scale, _draw_scale, 1);
 }
 
 //options
@@ -496,9 +495,9 @@ if secondary_text[page] != ""
 
 	    if (_sec_has_portrait)
 		{
-		    draw_sprite_ext(secondary_portrait_spr[page], secondary_image[page], _sec_anchor_x + _sec_portrait_w / 2 + _sec_portrait_x_adjust,
+		    scr_draw_portrait(secondary_portrait_spr[page], secondary_image[page], _sec_anchor_x + _sec_portrait_w / 2 + _sec_portrait_x_adjust,
 		        _sec_portrait_y + _sec_portrait_y_adjust, secondary_side[page] * _sec_draw_portrait_scale,
-		        _sec_draw_portrait_scale, 0, c_white, 1);
+		        _sec_draw_portrait_scale, 1);
 		}
 
 	    draw_set_font(fnt_determination);

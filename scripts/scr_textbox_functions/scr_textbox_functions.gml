@@ -1309,7 +1309,7 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 			case "toriel":
 				scr_text_color_default(c_white);
 				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
-				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+				snd[global.page_number] = snd_toriel;
 			break;
 			
 			case "flowery":
@@ -1320,21 +1320,20 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 			
 			case "asgore":
 				scr_text_color_default(c_white);
-				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
-				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+				global.speaker_sprite[global.page_number] = spr_asgore_dialogue;
+				snd[global.page_number] = snd_asgore;
 			break;
 			
 			case "carol":
 				scr_text_color_default(c_white);
-				global.speaker_sprite[global.page_number] = spr_flowery_dialogue;
-				scr_text_voice("flowery");
+				global.speaker_sprite[global.page_number] = spr_carol_dialogue;
+				snd[global.page_number] = snd_carol;
 			break;
-			
 			
 			case "rudy":
 				scr_text_color_default(c_white);
-				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
-				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+				global.speaker_sprite[global.page_number] = spr_rudy_dialogue;
+				snd[global.page_number] = snd_rudy;
 			break;
 			
 			case "empty":
