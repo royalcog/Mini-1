@@ -1415,9 +1415,14 @@ function create_textbox(_text_id)
 			    text_x_offset[p] = _portrait_w + 56;
 			    if global.speaker_sprite[p] == spr_toriel_dialogue
 			    {
-			        // she's drawn wider than her raw size, so push the text past her (same scale as Draw_64)
-			        var _tor_scale = ((textbox_height - border * 2) / scr_portrait_height(spr_toriel_dialogue)) * 0.9;
-			        text_x_offset[p] = _portrait_w * _tor_scale + 25;
+			        // she's drawn wider than her raw size, so push the text past her
+			        text_x_offset[p] = _portrait_w * TORIEL_PORTRAIT_SCALE + 25;
+			    }
+			    else if global.speaker_sprite[p] == spr_rudy_dialogue
+			    {
+			        // drawn bigger than normal, so push the text past him (same scale as Draw_64)
+			        var _rudy_scale = ((textbox_height - border * 2) / sprite_get_height(spr_rudy_dialogue)) * 0.9 * RUDY_PORTRAIT_MULT;
+			        text_x_offset[p] = _portrait_w * _rudy_scale + 25;
 			    }
 			}
 			
@@ -1618,8 +1623,10 @@ function scr_knighting_rise(_king_sprite = -1)
 // =====================================================================
 
 // offsets are in sprite pixels, measured from the face's origin (top-middle)
-#macro TORIEL_BODY_Y      26   // body's top edge, so her chin + ears sit over the robe's collar
+#macro TORIEL_BODY_Y      27   // body's top edge, so her chin + ears sit over the robe's collar
+#macro TORIEL_PORTRAIT_SCALE  2    // exact whole-number size = even pixels
 #macro TORIEL_GLASSES_X   0
+#macro RUDY_PORTRAIT_MULT  1.38   // rudy's portrait size compared to the normal fit-to-box size
 
 // glasses height per face frame (only used if glasses are turned on). index = spr_toriel_dialogue frame
 global.toriel_glasses_y = [

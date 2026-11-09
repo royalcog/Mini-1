@@ -229,9 +229,18 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
     }
     else if (_portrait_spr == spr_toriel_dialogue)
     {
-        // fit her whole portrait (face + body) to the box, like everyone else
-        _base_scale = ((textbox_height - border * 2) / scr_portrait_height(_portrait_spr)) * 0.9;
+        // exact 2x, centred top-to-bottom in the box like deltarune
+        _base_scale = TORIEL_PORTRAIT_SCALE;
         _draw_scale = _base_scale;
+        _portrait_y_adjust = (textbox_height - scr_portrait_height(_portrait_spr) * _draw_scale) / 2 - border - 8;
+    }
+	
+    else if (_portrait_spr == spr_rudy_dialogue)
+    {
+        // bigger than normal, centred top-to-bottom in the box
+        _base_scale *= RUDY_PORTRAIT_MULT;
+        _draw_scale = _base_scale;
+        _portrait_y_adjust = (textbox_height - sprite_get_height(_portrait_spr) * _draw_scale) / 2 - border - 8;
     }
 
     var _portrait_w = scr_portrait_width(_portrait_spr);
