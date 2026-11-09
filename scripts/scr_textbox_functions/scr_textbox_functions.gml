@@ -1413,6 +1413,12 @@ function create_textbox(_text_id)
 			{
 			    var _portrait_w = scr_portrait_width(global.speaker_sprite[p]);
 			    text_x_offset[p] = _portrait_w + 56;
+			    if global.speaker_sprite[p] == spr_toriel_dialogue
+			    {
+			        // she's drawn wider than her raw size, so push the text past her (same scale as Draw_64)
+			        var _tor_scale = ((textbox_height - border * 2) / scr_portrait_height(spr_toriel_dialogue)) * 0.9;
+			        text_x_offset[p] = _portrait_w * _tor_scale + 25;
+			    }
 			}
 			
 			if speaker_portrait_spr[p] != noone
@@ -1608,15 +1614,22 @@ function scr_knighting_rise(_king_sprite = -1)
 }
 
 // =====================================================================
-//  LAYERED PORTRAITS (toriel: body under the face, glasses over the eyes)
+//  LAYERED PORTRAITS (toriel: body under the face, optional glasses)
 // =====================================================================
 
 // offsets are in sprite pixels, measured from the face's origin (top-middle)
-#macro TORIEL_BODY_Y      22   // body's top edge, so her chin sits in the robe's collar
-#macro TORIEL_GLASSES_X   -1   // nudge glasses left/right
-#macro TORIEL_GLASSES_Y   -4   // nudge glasses up/down (lens lands on rows 13-16 = her eyes)
+#macro TORIEL_BODY_Y      26   // body's top edge, so her chin + ears sit over the robe's collar
+#macro TORIEL_GLASSES_X   0
 
-global.toriel_glasses = true;  // scr_toriel_glasses(false) to take them off
+// glasses height per face frame (only used if glasses are turned on). index = spr_toriel_dialogue frame
+global.toriel_glasses_y = [
+	-5, -5, -5, -5,   // 0-3
+	-5, -5, -4, -4,   // 4-7
+	-5, -4, -4, -4,   // 8-11
+	-4, -5, -4, -4,   // 12-15
+];
+
+global.toriel_glasses = false;  // scr_toriel_glasses(true) to put them on
 
 function scr_toriel_glasses(_on)
 {
@@ -1646,7 +1659,8 @@ function scr_draw_portrait(_spr, _img, _x, _y, _xscale, _yscale, _alpha = 1)
 		draw_sprite_ext(_spr, _img, _x, _y, _xscale, _yscale, 0, c_white, _alpha);
 		if (global.toriel_glasses)
 		{
-			draw_sprite_ext(spr_toriel_dialogue_glasses, 0, _x + TORIEL_GLASSES_X * _xscale, _y + TORIEL_GLASSES_Y * _yscale,
+			var _f = clamp(floor(_img), 0, array_length(global.toriel_glasses_y) - 1);
+			draw_sprite_ext(spr_toriel_dialogue_glasses, 0, _x + TORIEL_GLASSES_X * _xscale, _y + global.toriel_glasses_y[_f] * _yscale,
 				_xscale, _yscale, 0, c_white, _alpha);
 		}
 		return;
@@ -1660,19 +1674,19 @@ function scr_draw_portrait(_spr, _img, _x, _y, _xscale, _yscale, _alpha = 1)
 // =====================================================================
 //  a "voice" = a set of blip sounds. each letter-blip picks one at random,
 //  can stop the previous blip first, and gets a random pitch.
-//  sounds are listed by NAME so the game still compiles before you import them
-//  (missing ones are just skipped).
+//  sounds are referenced directly (not by name) so GameMaker doesn't strip them
+//  as "unused assets" when it builds the game.
 
 global.text_voices = {
 	flowery: {
-		sounds:      ["snd_flowery_voicenoise_1", "snd_flowery_voicenoise_2", "snd_flowery_voicenoise_3"],
+		sounds:      [snd_flowery_voicenoise_1, snd_flowery_voicenoise_2, snd_flowery_voicenoise_3],
 		stop_prev:   true,   // audio_stop_sound on all of them before playing
 		pitch_min:   0.9,    // 0.9 + random(0.15), same as the original
 		pitch_range: 0.15,
 		delay:       2,      // letters skipped between blips (2 = every 3rd letter, ~ sound_timer = 3)
 	},
-	// copy the block above to add more:
-	// toriel: { sounds: ["snd_toriel"], stop_prev: true, pitch_min: 1, pitch_range: 0, delay: 2 },
+	// copy the block above to add more, e.g.
+	// carol: { sounds: [snd_carol1, snd_carol2], stop_prev: true, pitch_min: 1, pitch_range: 0.1, delay: 2 },
 };
 
 /// use inside a scr_text case: sets this page's blip to a voice from global.text_voices
@@ -1681,6 +1695,7 @@ function scr_text_voice(_name)
 	var _voice = global.text_voices[$ _name];
 	if (_voice == undefined)
 	{
+		show_debug_message("scr_text_voice: no voice called " + string(_name));
 		snd[global.page_number] = snd_empty;
 		return;
 	}
@@ -1694,19 +1709,15 @@ function scr_play_text_blip(_snd, _gain = 1)
 	// voice sets (flowery etc.)
 	if (is_struct(_snd))
 	{
-		var _ids = [];
-		for (var i = 0; i < array_length(_snd.sounds); i++)
-		{
-			var _id = asset_get_index(_snd.sounds[i]);
-			if (_id != -1 && asset_get_type(_snd.sounds[i]) == asset_sound) array_push(_ids, _id);
-		}
-		if (array_length(_ids) == 0) return; // not imported yet
+		var _sounds = _snd.sounds;
+		var _n = array_length(_sounds);
+		if (_n == 0) return;
 
 		if (_snd.stop_prev)
 		{
-			for (var i = 0; i < array_length(_ids); i++) audio_stop_sound(_ids[i]);
+			for (var i = 0; i < _n; i++) audio_stop_sound(_sounds[i]);
 		}
-		var _inst = audio_play_sound(_ids[irandom(array_length(_ids) - 1)], 8, false);
+		var _inst = audio_play_sound(_sounds[irandom(_n - 1)], 8, false);
 		audio_sound_pitch(_inst, _snd.pitch_min + random(_snd.pitch_range));
 		audio_sound_gain(_inst, _gain, 0);
 		return;

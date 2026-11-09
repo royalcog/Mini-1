@@ -177,7 +177,7 @@ if (instance_exists(_gerson))
 // 4. Room music
 
 // sng_knightappear from the very start, until the battle starts (only the first time: rm_zero's revisited for the ending)
-if (room == rm_zero && !variable_global_exists("knight_appear_started"))
+/* if (room == rm_zero && !variable_global_exists("knight_appear_started"))
 {
     global.knight_appear_started = true;
     with (obj_cutscenefade) old_music_faded = true; // the room's opening fader would otherwise fade it right back out

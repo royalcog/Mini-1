@@ -229,11 +229,9 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
     }
     else if (_portrait_spr == spr_toriel_dialogue)
     {
-        // toriel's face is small and sits on her body, so size her like a normal (susie-sized) portrait
-        // instead of stretching the face to fill the box, then sit her body on the bottom of the portrait area
-        _base_scale = ((textbox_height - border * 2) / sprite_get_height(spr_susie_dialogue)) * 0.9;
+        // fit her whole portrait (face + body) to the box, like everyone else
+        _base_scale = ((textbox_height - border * 2) / scr_portrait_height(_portrait_spr)) * 0.9;
         _draw_scale = _base_scale;
-        _portrait_y_adjust = (textbox_height - border * 2) * 0.9 - scr_portrait_height(_portrait_spr) * _draw_scale;
     }
 
     var _portrait_w = scr_portrait_width(_portrait_spr);
