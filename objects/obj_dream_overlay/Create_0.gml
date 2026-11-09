@@ -1,6 +1,10 @@
 depth = -14000; // over the room, under obj_flashback_dark's black (-15000) and the textbox
 
 // ===== settings =====
+night_tint = make_colour_rgb(120, 115, 175); // multiplied in. lower = darker night, more blue = cooler
+dream_wave = 0.0015;  // sway strength (0 = still)
+dream_blur = 0.004;   // how far the glow spreads
+dream_glow = 0.35;    // how strong the glow is (0 = none)
 vignette_col   = make_colour_rgb(10, 10, 40);
 vignette_alpha = 0.75;  // darkness at the very edges
 mote_count     = 35;    // floating dust specks (0 = none)
