@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_flowery_voicenoise_3",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.14800453,
+  "exportDir":"",
+  "name":"snd_flowery_voicenoise_3",
+  "parent":{
+    "name":"Blips",
+    "path":"folders/Dialogue/Sound Effects/Flowery/Blips.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_flowery_voicenoise_3.wav",
+  "volume":1.0,
+}

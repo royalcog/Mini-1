@@ -50,7 +50,7 @@ if text_pause_timer <= 0
         else if _check_char != "*" && _check_char != " "
         {
             var _adjusted_delay = snd_delay[page] * (text_speed / _speed);
-            if snd[page] == snd_tenna1
+            if !is_struct(snd[page]) && snd[page] == snd_tenna1
             {
                 _adjusted_delay += 3;
             }
@@ -61,27 +61,7 @@ if text_pause_timer <= 0
             else
             {
                 snd_count = 0;
-                if snd[page] != noone
-				{
-				    var _play_snd = snd[page];
-				    if _play_snd == snd_queen
-				    {
-				        audio_stop_sound(snd_queen);
-				        var _q_inst = audio_play_sound(snd_queen, 8, false);
-				        audio_sound_pitch(_q_inst, 0.9 + random(0.15));
-				    }
-				    else if _play_snd == snd_tenna1
-				    {
-				        var _tenna_snds = [snd_tenna1, snd_tenna2, snd_tenna3, snd_tenna4, snd_tenna5,
-				                           snd_tenna6, snd_tenna7, snd_tenna8, snd_tenna9, snd_tenna10];
-				        _play_snd = _tenna_snds[irandom(9)];
-				        audio_play_sound(_play_snd, 8, false);
-				    }
-				    else
-				    {
-				        audio_play_sound(_play_snd, 8, false);
-				    }
-				}
+                scr_play_text_blip(snd[page]);
             }
         }
 		
@@ -247,10 +227,19 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
         _draw_scale *= 1.2;
         _portrait_y_adjust = -6;
     }
+    else if (_portrait_spr == spr_toriel_dialogue)
+    {
+        // toriel's face is small and sits on her body, so size her like a normal (susie-sized) portrait
+        // instead of stretching the face to fill the box, then sit her body on the bottom of the portrait area
+        _base_scale = ((textbox_height - border * 2) / sprite_get_height(spr_susie_dialogue)) * 0.9;
+        _draw_scale = _base_scale;
+        _portrait_y_adjust = (textbox_height - border * 2) * 0.9 - scr_portrait_height(_portrait_spr) * _draw_scale;
+    }
 
-    var _portrait_w = sprite_get_width(_portrait_spr);
-    draw_sprite_ext(_portrait_spr, global.speaker_image[page], _portrait_x + _portrait_w * _base_scale / 2,
-        textbox_y + border + 8 + _portrait_y_adjust, global.speaker_side[page] * _draw_scale, _draw_scale, 0, c_white, 1);
+    var _portrait_w = scr_portrait_width(_portrait_spr);
+		    scr_draw_portrait(secondary_portrait_spr[page], secondary_image[page], _sec_anchor_x + _sec_portrait_w / 2 + _sec_portrait_x_adjust,
+		        _sec_portrait_y + _sec_portrait_y_adjust, secondary_side[page] * _sec_draw_portrait_scale,
+		        _sec_draw_portrait_scale, 1);
 }
 
 //options
@@ -403,7 +392,7 @@ if secondary_text[page] != ""
 
 	        // play the speaker's tick sound as new characters get revealed
 	        var _sec_new_chars = floor(secondary_draw_char);
-	        if _sec_new_chars > _sec_prev_chars && secondary_snd[page] != noone
+	        if _sec_new_chars > _sec_prev_chars && (is_struct(secondary_snd[page]) || secondary_snd[page] != noone)
 	        {
 	            var _sec_check_char = string_char_at(secondary_text[page], _sec_new_chars);
 	            if _sec_check_char != "*" && _sec_check_char != " "
@@ -415,6 +404,7 @@ if secondary_text[page] != ""
 					else
 					{
 					    secondary_snd_count = 0;
+					    scr_play_text_blip(secondary_snd[page]);
 
 					    if secondary_snd[page] == snd_queen
 					    {
@@ -474,7 +464,7 @@ if secondary_text[page] != ""
 	    var _sec_col = secondary_col[page];
 
 	    var _sec_has_portrait = (secondary_portrait_spr[page] != noone);
-	    var _sec_portrait_w = _sec_has_portrait ? sprite_get_width(secondary_portrait_spr[page]) * _sec_base_portrait_scale : 0;
+	    var _sec_portrait_w = _sec_has_portrait ? scr_portrait_width(secondary_portrait_spr[page]) * _sec_base_portrait_scale : 0;
 	    var _sec_x_text = _sec_anchor_x + (_sec_has_portrait ? _sec_portrait_w + _sec_margin_x : 0);
 	    var _sec_max_w = (textbox_x + textbox_width - border) - (_sec_x_text + _sec_text_x_adjust);
 

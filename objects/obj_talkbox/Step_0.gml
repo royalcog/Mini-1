@@ -21,22 +21,11 @@ if (chars_per_s > 0) {
             char_index = clamp(char_index + adv, 0, total_len);
             
             var _cur_char = string_char_at(_layout_text, char_index);
-            if _cur_char != " " && _cur_char != "\n" && speak_snd != noone
+            if _cur_char != " " && _cur_char != "\n" && (is_struct(speak_snd) || speak_snd != noone)
 			{
 			    if snd_count <= 0
 			    {
-			        if speak_snd == snd_queen
-			        {
-			            audio_stop_sound(snd_queen);
-			            var _snd = audio_play_sound(snd_queen, 8, false);
-			            audio_sound_pitch(_snd, 0.9 + random(0.15));
-			            audio_sound_gain(_snd, speak_vol, 0);
-			        }
-			        else
-			        {
-			            var _snd = audio_play_sound(speak_snd, 8, false);
-			            audio_sound_gain(_snd, speak_vol, 0);
-			        }
+			        scr_play_text_blip(speak_snd, speak_vol);
 			        snd_count = snd_delay * adv;
 			    }
 			    else

@@ -1306,6 +1306,37 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 				scr_text_color_default(make_colour_rgb(111, 209, 255));
 			break;
 			
+			case "toriel":
+				scr_text_color_default(c_white);
+				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
+				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+			break;
+			
+			case "flowery":
+				scr_text_color_default(c_white);
+				global.speaker_sprite[global.page_number] = spr_flowery_dialogue;
+				scr_text_voice("flowery");
+			break;
+			
+			case "asgore":
+				scr_text_color_default(c_white);
+				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
+				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+			break;
+			
+			case "carol":
+				scr_text_color_default(c_white);
+				global.speaker_sprite[global.page_number] = spr_flowery_dialogue;
+				scr_text_voice("flowery");
+			break;
+			
+			
+			case "rudy":
+				scr_text_color_default(c_white);
+				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
+				snd[global.page_number] = snd_empty; // swap in her blip once it's imported
+			break;
+			
 			case "empty":
 			    // no speaker_sprite set, text stays at default position
 				snd[global.page_number] = snd_empty;
@@ -1381,7 +1412,7 @@ function create_textbox(_text_id)
 
 			if global.speaker_sprite[p] != noone
 			{
-			    var _portrait_w = sprite_get_width(global.speaker_sprite[p]);
+			    var _portrait_w = scr_portrait_width(global.speaker_sprite[p]);
 			    text_x_offset[p] = _portrait_w + 56;
 			}
 			
@@ -1575,4 +1606,130 @@ function scr_knighting_rise(_king_sprite = -1)
             image_speed = 0;
         }
     }
+}
+
+// =====================================================================
+//  LAYERED PORTRAITS (toriel: body under the face, glasses over the eyes)
+// =====================================================================
+
+// offsets are in sprite pixels, measured from the face's origin (top-middle)
+#macro TORIEL_BODY_Y      22   // body's top edge, so her chin sits in the robe's collar
+#macro TORIEL_GLASSES_X   -1   // nudge glasses left/right
+#macro TORIEL_GLASSES_Y   -4   // nudge glasses up/down (lens lands on rows 13-16 = her eyes)
+
+global.toriel_glasses = true;  // scr_toriel_glasses(false) to take them off
+
+function scr_toriel_glasses(_on)
+{
+	global.toriel_glasses = _on;
+}
+
+/// raw (unscaled) width of a portrait, counting any extra layers
+function scr_portrait_width(_spr)
+{
+	if (_spr == spr_toriel_dialogue) return sprite_get_width(spr_toriel_dialogue_body);
+	return sprite_get_width(_spr);
+}
+
+/// raw (unscaled) height of a portrait, counting any extra layers
+function scr_portrait_height(_spr)
+{
+	if (_spr == spr_toriel_dialogue) return TORIEL_BODY_Y + sprite_get_height(spr_toriel_dialogue_body);
+	return sprite_get_height(_spr);
+}
+
+/// draws a dialogue portrait. (_x, _y) = where the face sprite's origin goes, same as draw_sprite_ext
+function scr_draw_portrait(_spr, _img, _x, _y, _xscale, _yscale, _alpha = 1)
+{
+	if (_spr == spr_toriel_dialogue)
+	{
+		draw_sprite_ext(spr_toriel_dialogue_body, 0, _x, _y + TORIEL_BODY_Y * _yscale, _xscale, _yscale, 0, c_white, _alpha);
+		draw_sprite_ext(_spr, _img, _x, _y, _xscale, _yscale, 0, c_white, _alpha);
+		if (global.toriel_glasses)
+		{
+			draw_sprite_ext(spr_toriel_dialogue_glasses, 0, _x + TORIEL_GLASSES_X * _xscale, _y + TORIEL_GLASSES_Y * _yscale,
+				_xscale, _yscale, 0, c_white, _alpha);
+		}
+		return;
+	}
+	draw_sprite_ext(_spr, _img, _x, _y, _xscale, _yscale, 0, c_white, _alpha);
+}
+
+
+// =====================================================================
+//  VOICE BLIPS
+// =====================================================================
+//  a "voice" = a set of blip sounds. each letter-blip picks one at random,
+//  can stop the previous blip first, and gets a random pitch.
+//  sounds are listed by NAME so the game still compiles before you import them
+//  (missing ones are just skipped).
+
+global.text_voices = {
+	flowery: {
+		sounds:      ["snd_flowery_voicenoise_1", "snd_flowery_voicenoise_2", "snd_flowery_voicenoise_3"],
+		stop_prev:   true,   // audio_stop_sound on all of them before playing
+		pitch_min:   0.9,    // 0.9 + random(0.15), same as the original
+		pitch_range: 0.15,
+		delay:       2,      // letters skipped between blips (2 = every 3rd letter, ~ sound_timer = 3)
+	},
+	// copy the block above to add more:
+	// toriel: { sounds: ["snd_toriel"], stop_prev: true, pitch_min: 1, pitch_range: 0, delay: 2 },
+};
+
+/// use inside a scr_text case: sets this page's blip to a voice from global.text_voices
+function scr_text_voice(_name)
+{
+	var _voice = global.text_voices[$ _name];
+	if (_voice == undefined)
+	{
+		snd[global.page_number] = snd_empty;
+		return;
+	}
+	snd[global.page_number] = _voice;
+	snd_delay[global.page_number] = _voice.delay;
+}
+
+/// plays one text blip. _snd can be a voice struct, a plain sound, or noone
+function scr_play_text_blip(_snd, _gain = 1)
+{
+	// voice sets (flowery etc.)
+	if (is_struct(_snd))
+	{
+		var _ids = [];
+		for (var i = 0; i < array_length(_snd.sounds); i++)
+		{
+			var _id = asset_get_index(_snd.sounds[i]);
+			if (_id != -1 && asset_get_type(_snd.sounds[i]) == asset_sound) array_push(_ids, _id);
+		}
+		if (array_length(_ids) == 0) return; // not imported yet
+
+		if (_snd.stop_prev)
+		{
+			for (var i = 0; i < array_length(_ids); i++) audio_stop_sound(_ids[i]);
+		}
+		var _inst = audio_play_sound(_ids[irandom(array_length(_ids) - 1)], 8, false);
+		audio_sound_pitch(_inst, _snd.pitch_min + random(_snd.pitch_range));
+		audio_sound_gain(_inst, _gain, 0);
+		return;
+	}
+
+	if (_snd == noone) return;
+
+	// older special cases, unchanged
+	if (_snd == snd_queen)
+	{
+		audio_stop_sound(snd_queen);
+		var _q_inst = audio_play_sound(snd_queen, 8, false);
+		audio_sound_pitch(_q_inst, 0.9 + random(0.15));
+		audio_sound_gain(_q_inst, _gain, 0);
+		return;
+	}
+	if (_snd == snd_tenna1)
+	{
+		var _tenna_snds = [snd_tenna1, snd_tenna2, snd_tenna3, snd_tenna4, snd_tenna5,
+		                   snd_tenna6, snd_tenna7, snd_tenna8, snd_tenna9, snd_tenna10];
+		_snd = _tenna_snds[irandom(9)];
+	}
+	var _inst = audio_play_sound(_snd, 8, false);
+	audio_sound_gain(_inst, _gain, 0);
 }
