@@ -1750,3 +1750,9 @@ function scr_play_text_blip(_snd, _gain = 1)
 	var _inst = audio_play_sound(_snd, 8, false);
 	audio_sound_gain(_inst, _gain, 0);
 }
+
+/// make another character reflect on the floor (call after they exist, e.g. right after spawning them)
+function scr_reflect_add(_obj)
+{
+    if (instance_exists(obj_floor_reflect)) array_push(obj_floor_reflect.reflect_objects, _obj);
+}
