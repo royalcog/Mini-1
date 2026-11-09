@@ -1,6 +1,8 @@
 // ===== settings =====
-shadow_top    = make_colour_rgb(110, 110, 135); // multiply colour at the top of the screen (darker = lower numbers)
-shadow_bottom = make_colour_rgb(225, 225, 235); // multiply colour at the bottom (c_white = no shadow)
+shadow_top    = make_colour_rgb(55, 60, 120);   // top of the screen: deep blue-dark
+shadow_mid    = make_colour_rgb(150, 160, 210); // middle: soft blue
+shadow_bottom = make_colour_rgb(235, 238, 255); // bottom: barely tinted (c_white = none)
+shadow_mid_y  = 0.45;                           // where the middle colour sits (0 = top, 1 = bottom)
 reflect_alpha  = 0.35;   // reflection strength right at their feet
 reflect_fade   = 50;     // how many pixels down the reflection fades out
 reflect_col    = c_white;
@@ -25,7 +27,8 @@ draw_reflection = function(_i)
     var _top = sprite_get_bbox_top(_spr);
     var _bot = sprite_get_bbox_bottom(_spr);
 
-    var _feet = _i.y + (_bot + 1 - _yo) * _ys; // room y of the bottom of their feet
+    var _off  = variable_instance_exists(_i, "reflect_offset") ? _i.reflect_offset : 0; // per-character nudge, in sprite pixels (negative = closer to them)
+    var _feet = _i.y + (_bot + 1 - _yo + _off) * _ys; // room y of the bottom of their feet
     var _x    = _i.x - _xo * _xs;              // left edge (works when flipped too)
 
     for (var r = _bot; r >= _top; r--)

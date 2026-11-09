@@ -13,14 +13,45 @@ function scr_game_text(_text_id)
 	switch (_text_id)
 	{
 		case "self_1":
-			scr_text("* Please...", "toriel", 0);
-			scr_text("* Please...", "asgore", 0);
-			scr_text("* Please...", "carol", 0);
-			scr_text("* Please...", "rudy", 0);
-			scr_text("* Jarona!", "flowery", 0);
-				scr_obj_sprite_on_page(obj_flowery, spr_flowery_pose_right, false);
-				scr_text_voice_clip(snd_flowery_jarona1);
-			scr_text("* Hey there Pauly.", "flowery", 1);   // normal blips
+			scr_text("* I think...", "asgore", 21);
+			scr_text("* I think I need to take a short break from this.", "asgore", 12);
+			scr_text("* Sure, buddy.", "flowery", 0);
+			scr_text("* Take all the time you need.", "flowery", 11);
+				scr_text_voice_clip(snd_flowery_myking);
+			scr_text("* ...", "asgore", 13);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_left_look_down, false);
+		break;
+		
+		case "self_2":
+			scr_text("* What's on your mind, Gorey?", "flowery", 19);
+				scr_obj_sprite_on_page(obj_flowery, spr_flowery_sad_down_left, false);
+			scr_text("* Nothing much, Flowery.", "asgore", 11);
+			scr_text("* I'm just...", "asgore", 22);
+			scr_text("* Remembering what happened.", "asgore", 46);
+			scr_text("* ...", "asgore", 47);
+			scr_text("* I pushed everyone away.", "asgore", 20);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_up, false);
+			scr_text("* Toriel, the Holidays...", "asgore", 36);
+			scr_text("* It's all mostly been a blur, but...", "asgore", 48);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_up_expressions, false, 3);
+			scr_text("* ...", "asgore", 13);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_up_expressions, false, 2);
+			scr_text("* ...", "flowery", 29);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_up, false);
+			scr_text("* I'm here for you, Asgore.", "flowery", 18);
+				scr_obj_sprite_on_page(obj_flowery, spr_flowery_walk_down_left, false);
+			scr_text("* Talk to me.", "flowery", 17);
+				scr_text_voice_clip(snd_flowery_leafittome);
+			scr_text("* ...", "asgore", 47);
+		break;
+		
+		case "self_3":
+			scr_flashback_dark(true);   // fade to black + no portraits from here on
+			scr_text("* After... that day...", "asgore", 47);
+			scr_text("* There was another incident.", "asgore", 46);
+			scr_text("* More driven \"craziness\", as they called it.", "asgore", 22);
+			scr_text("* I was... sitting at home, one night.", "asgore", 13);
+			scr_text("* The Holidays were over, and the kids were all asleep.", "asgore", 9);
 		break;
 /*
 

@@ -1411,7 +1411,8 @@ function create_textbox(_text_id)
             text_length[p] = string_length(text[p]);
             text_x_offset[p] = 5;
 
-			if global.speaker_sprite[p] != noone
+			// hidden portrait = laid out like an "empty" speaker (full width)
+			if global.speaker_sprite[p] != noone && !global.hide_face && !hide_face[p]
 			{
 			    // same text start for everyone with a portrait, like deltarune
 			    text_x_offset[p] = PORTRAIT_TEXT_X;
@@ -1755,4 +1756,41 @@ function scr_play_text_blip(_snd, _gain = 1)
 function scr_reflect_add(_obj)
 {
     if (instance_exists(obj_floor_reflect)) array_push(obj_floor_reflect.reflect_objects, _obj);
+}
+
+// =====================================================================
+//  WALK-IN (character walks in from offscreen and stops on a spot)
+// =====================================================================
+
+/// call in Create: walks from _offset px to the right of _target_x, stopping on _target_x
+function scr_walk_in_setup(_target_x, _offset, _speed)
+{
+	walk_target_x = _target_x;
+	walk_speed    = _speed;
+	walking       = true;
+	x             = _target_x + _offset;
+}
+
+/// call in Step
+function scr_walk_in_step()
+{
+	if (!walking) return;
+	image_speed = 1;
+	x = max(x - walk_speed, walk_target_x);
+	if (x <= walk_target_x)
+	{
+		walking = false;
+		image_speed = 0;
+		image_index = 0;   // stand still on the first frame
+	}
+}
+
+/// fades the room to black (true) or back in (false), under the textbox.
+/// while it's dark, portraits are hidden (text keeps the speaker's colour + voice)
+function scr_flashback_dark(_on, _speed = 0.02)
+{
+	var _d = instance_exists(obj_flashback_dark) ? obj_flashback_dark.id : instance_create_depth(0, 0, -15000, obj_flashback_dark);
+	_d.dark_target = _on ? 1 : 0;
+	_d.dark_speed  = _speed;
+	scr_text_hide_face(_on);
 }

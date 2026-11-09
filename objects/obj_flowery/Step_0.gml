@@ -1,0 +1,1 @@
+scr_walk_in_step();
