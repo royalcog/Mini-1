@@ -1307,31 +1307,31 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 			break;
 			
 			case "toriel":
-				scr_text_color_default(c_white);
+				scr_text_color_default(make_colour_rgb(123, 123, 221));
 				global.speaker_sprite[global.page_number] = spr_toriel_dialogue; // body + glasses get added automatically
 				snd[global.page_number] = snd_toriel;
 			break;
 			
 			case "flowery":
-				scr_text_color_default(c_white);
+				scr_text_color_default(make_colour_rgb(254, 229, 2));
 				global.speaker_sprite[global.page_number] = spr_flowery_dialogue;
 				scr_text_voice("flowery");
 			break;
 			
 			case "asgore":
-				scr_text_color_default(c_white);
+				scr_text_color_default(make_colour_rgb(228, 134, 0));
 				global.speaker_sprite[global.page_number] = spr_asgore_dialogue;
 				snd[global.page_number] = snd_asgore;
 			break;
 			
 			case "carol":
-				scr_text_color_default(c_white);
+				scr_text_color_default(make_colour_rgb(0, 162, 232));
 				global.speaker_sprite[global.page_number] = spr_carol_dialogue;
 				snd[global.page_number] = snd_carol;
 			break;
 			
 			case "rudy":
-				scr_text_color_default(c_white);
+				scr_text_color_default(make_colour_rgb(91, 127, 64));
 				global.speaker_sprite[global.page_number] = spr_rudy_dialogue;
 				snd[global.page_number] = snd_rudy;
 			break;
@@ -1411,19 +1411,8 @@ function create_textbox(_text_id)
 
 			if global.speaker_sprite[p] != noone
 			{
-			    var _portrait_w = scr_portrait_width(global.speaker_sprite[p]);
-			    text_x_offset[p] = _portrait_w + 56;
-			    if global.speaker_sprite[p] == spr_toriel_dialogue
-			    {
-			        // she's drawn wider than her raw size, so push the text past her
-			        text_x_offset[p] = _portrait_w * TORIEL_PORTRAIT_SCALE + 25;
-			    }
-			    else if global.speaker_sprite[p] == spr_rudy_dialogue
-			    {
-			        // drawn bigger than normal, so push the text past him (same scale as Draw_64)
-			        var _rudy_scale = ((textbox_height - border * 2) / sprite_get_height(spr_rudy_dialogue)) * 0.9 * RUDY_PORTRAIT_MULT;
-			        text_x_offset[p] = _portrait_w * _rudy_scale + 25;
-			    }
+			    // same text start for everyone with a portrait, like deltarune
+			    text_x_offset[p] = PORTRAIT_TEXT_X;
 			}
 			
 			if speaker_portrait_spr[p] != noone
@@ -1627,6 +1616,7 @@ function scr_knighting_rise(_king_sprite = -1)
 #macro TORIEL_PORTRAIT_SCALE  2    // exact whole-number size = even pixels
 #macro TORIEL_GLASSES_X   0
 #macro RUDY_PORTRAIT_MULT  1.38   // rudy's portrait size compared to the normal fit-to-box size
+#macro PORTRAIT_TEXT_X  130   // where the "*" starts for every speaker with a portrait (distance from the box's inner left edge)
 
 // glasses height per face frame (only used if glasses are turned on). index = spr_toriel_dialogue frame
 global.toriel_glasses_y = [

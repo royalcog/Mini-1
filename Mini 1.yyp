@@ -840,6 +840,7 @@
     {"id":{"name":"spr_cafetable","path":"sprites/spr_cafetable/spr_cafetable.yy",},},
     {"id":{"name":"spr_capn","path":"sprites/spr_capn/spr_capn.yy",},},
     {"id":{"name":"spr_carol_dialogue","path":"sprites/spr_carol_dialogue/spr_carol_dialogue.yy",},},
+    {"id":{"name":"spr_carol_walk_right","path":"sprites/spr_carol_walk_right/spr_carol_walk_right.yy",},},
     {"id":{"name":"spr_castle_1f_tiles","path":"sprites/spr_castle_1f_tiles/spr_castle_1f_tiles.yy",},},
     {"id":{"name":"spr_castle_town","path":"sprites/spr_castle_town/spr_castle_town.yy",},},
     {"id":{"name":"spr_castle_tutorial_area","path":"sprites/spr_castle_tutorial_area/spr_castle_tutorial_area.yy",},},

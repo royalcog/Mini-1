@@ -242,6 +242,21 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
         _draw_scale = _base_scale;
         _portrait_y_adjust = (textbox_height - sprite_get_height(_portrait_spr) * _draw_scale) / 2 - border - 8;
     }
+	
+    else if (_portrait_spr == spr_flowery_dialogue)
+    {
+        _portrait_x += 12;   // nudge right (bigger = further right)
+    }
+	
+    else if (_portrait_spr == spr_asgore_dialogue)
+    {
+        _portrait_x += 6;   // nudge right (bigger = further right)
+    }
+	
+    else if (_portrait_spr == spr_carol_dialogue)
+    {
+        _portrait_x += 2;   // nudge right (bigger = further right)
+    }
 
     var _portrait_w = scr_portrait_width(_portrait_spr);
     scr_draw_portrait(_portrait_spr, global.speaker_image[page], _portrait_x + _portrait_w * _base_scale / 2,
