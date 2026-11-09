@@ -317,6 +317,14 @@ if (center_text)
     _center_offset = (_view_w / 2) - (textbox_x + textbox_width / 2);
 }
 
+// one-shot voice clip for this line (scr_text_voice_clip)
+if voice_clip[page] != noone && !voice_clip_played[page]
+{
+    voice_clip_played[page] = true;
+    if voice_clip_inst != noone audio_stop_sound(voice_clip_inst); // cut off the last clip if it's still going
+    voice_clip_inst = audio_play_sound(voice_clip[page], 8, false);
+}
+
 // draw the text
 var _max_char = text_cutoff[page] != noone ? min(draw_char, text_cutoff[page]) : draw_char;
 var _text_x_offset_draw = (global.hide_face || hide_face[page]) ? 5 : text_x_offset[page];

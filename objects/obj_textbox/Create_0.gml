@@ -75,3 +75,4 @@ tail_anim_frame = 0;
 tail_anim_done = false;
 tail_loop_timer = 0;
 tail_loop_delay = 120;
+voice_clip_inst = noone;

@@ -50,6 +50,8 @@ function scr_set_defaults_for_text()
 	secondary_snd[global.page_number] = noone;
 	hide_face[global.page_number] = false;
 	secondary_snd_delay[global.page_number] = 2;
+	voice_clip[global.page_number] = noone;
+	voice_clip_played[global.page_number] = false;
 }
 
 /// @param text - the aside/mini-textbox line (no border, drawn under the main box)
@@ -1313,13 +1315,13 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 			break;
 			
 			case "flowery":
-				scr_text_color_default(make_colour_rgb(254, 229, 2));
+				scr_text_color_gradient(make_colour_rgb(254, 229, 2), c_white);
 				global.speaker_sprite[global.page_number] = spr_flowery_dialogue;
 				scr_text_voice("flowery");
 			break;
 			
 			case "asgore":
-				scr_text_color_default(make_colour_rgb(228, 134, 0));
+				scr_text_color_default(make_colour_rgb(209, 156, 80));
 				global.speaker_sprite[global.page_number] = spr_asgore_dialogue;
 				snd[global.page_number] = snd_asgore;
 			break;
@@ -1698,6 +1700,14 @@ function scr_text_voice(_name)
 	}
 	snd[global.page_number] = _voice;
 	snd_delay[global.page_number] = _voice.delay;
+}
+
+/// call right after a scr_text line: plays _snd once when that line starts, instead of the speaker's blips
+function scr_text_voice_clip(_snd)
+{
+	var _p = global.page_number - 1;
+	voice_clip[_p] = _snd;
+	snd[_p] = noone;   // no blips on this line
 }
 
 /// plays one text blip. _snd can be a voice struct, a plain sound, or noone

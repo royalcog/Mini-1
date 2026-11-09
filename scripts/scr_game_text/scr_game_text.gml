@@ -17,7 +17,9 @@ function scr_game_text(_text_id)
 			scr_text("* Please...", "asgore", 0);
 			scr_text("* Please...", "carol", 0);
 			scr_text("* Please...", "rudy", 0);
-			scr_text("* Please...", "flowery", 0);
+			scr_text("* Howdy!", "flowery", 0);
+				scr_text_voice_clip(snd_flowery_jarona1);
+			scr_text("* I'm FLOWERY.", "flowery", 1);   // normal blips
 		break;
 /*
 
