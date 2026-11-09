@@ -1787,10 +1787,21 @@ function scr_walk_in_step()
 
 /// fades the room to black (true) or back in (false), under the textbox.
 /// while it's dark, portraits are hidden (text keeps the speaker's colour + voice)
-function scr_flashback_dark(_on, _speed = 0.02)
+/// _room (only when turning off): go to this room while black, then fade in there
+function scr_flashback_dark(_on, _speed = 0.02, _room = noone)
 {
 	var _d = instance_exists(obj_flashback_dark) ? obj_flashback_dark.id : instance_create_depth(0, 0, -15000, obj_flashback_dark);
-	_d.dark_target = _on ? 1 : 0;
-	_d.dark_speed  = _speed;
+	_d.dark_speed = _speed;
 	scr_text_hide_face(_on);
+
+	if (!_on && _room != noone)
+	{
+		_d.dark_target = 1;      // make sure we're fully black first
+		_d.goto_room   = _room;
+		_d.persistent  = true;   // survive the room change so it can fade in on the other side
+	}
+	else
+	{
+		_d.dark_target = _on ? 1 : 0;
+	}
 }

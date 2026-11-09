@@ -53,6 +53,10 @@ function scr_game_text(_text_id)
 			scr_text("* I was... sitting at home, one night.", "asgore", 13);
 			scr_text("* The Holidays were over, and the kids were all asleep.", "asgore", 9);
 		break;
+		
+		case "self_4":
+			scr_flashback_dark(false, 0.02, rm_one);
+		break;
 /*
 
 */

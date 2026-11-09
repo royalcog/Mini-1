@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_night_dream",
+  "name":"shd_night_dream",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

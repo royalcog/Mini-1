@@ -9,8 +9,8 @@
   "name":"obj_asgore",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Characters/Enemies.yy",
+    "name":"Dreemurs",
+    "path":"folders/Objects/Characters/Dreemurs.yy",
   },
   "parentObjectId":null,
   "persistent":false,
