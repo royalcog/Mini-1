@@ -888,6 +888,7 @@
     {"id":{"name":"spr_cafetable","path":"sprites/spr_cafetable/spr_cafetable.yy",},},
     {"id":{"name":"spr_capn","path":"sprites/spr_capn/spr_capn.yy",},},
     {"id":{"name":"spr_carol_dialogue","path":"sprites/spr_carol_dialogue/spr_carol_dialogue.yy",},},
+    {"id":{"name":"spr_carol_walk_down","path":"sprites/spr_carol_walk_down/spr_carol_walk_down.yy",},},
     {"id":{"name":"spr_carol_walk_left","path":"sprites/spr_carol_walk_left/spr_carol_walk_left.yy",},},
     {"id":{"name":"spr_carol_walk_right","path":"sprites/spr_carol_walk_right/spr_carol_walk_right.yy",},},
     {"id":{"name":"spr_carol_walk_up","path":"sprites/spr_carol_walk_up/spr_carol_walk_up.yy",},},
