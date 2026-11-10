@@ -9,6 +9,7 @@ draw_clear(c_black);
 shader_set(shd_dream_post);
 shader_set_uniform_f(u_post_texel, 1 / _sw, 1 / _sh);
 shader_set_uniform_f(u_post_step, post_spread * _px / 3);
+shader_set_uniform_f(u_post_glow_step, post_glow_spread * _px / 3);
 shader_set_uniform_f(u_post_soft, post_soft);
 shader_set_uniform_f(u_post_glow, post_glow);
 shader_set_uniform_f(u_post_thresh, post_thresh);

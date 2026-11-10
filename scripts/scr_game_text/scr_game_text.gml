@@ -67,8 +67,10 @@ function scr_game_text(_text_id)
 			scr_text("* The flower shop is growing vines on it, buddy.", "rudy", 7);
 			scr_text("* ...", "asgorepol", 4);
 			scr_text("* Don't you all see?", "asgorepol", 24);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_gesture_right, false);
 			scr_text("* These fountains aren't just a means of transportation.", "asgorepol", 23);
 			scr_text("* You can talk to inanimate objects! Speak with people from the dead!", "asgorepol", 30);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_double_gesture_right, false);
 			scr_text("* This isn't some... conspiracy.", "asgorepol", 19);
 			scr_text("* Why is it so hard for all of you to just...", "asgorepol", 16);
 			scr_text("* BELIEVE me???", "asgorepol", 0);

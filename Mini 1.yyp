@@ -667,6 +667,7 @@
     {"id":{"name":"scr_UI_visibility","path":"scripts/scr_UI_visibility/scr_UI_visibility.yy",},},
     {"id":{"name":"shd_black_key","path":"shaders/shd_black_key/shd_black_key.yy",},},
     {"id":{"name":"shd_button_highlight","path":"shaders/shd_button_highlight/shd_button_highlight.yy",},},
+    {"id":{"name":"shd_dream_post","path":"shaders/shd_dream_post/shd_dream_post.yy",},},
     {"id":{"name":"shd_night_dream","path":"shaders/shd_night_dream/shd_night_dream.yy",},},
     {"id":{"name":"shd_shadow_tint","path":"shaders/shd_shadow_tint/shd_shadow_tint.yy",},},
     {"id":{"name":"shd_silhouette_white","path":"shaders/shd_silhouette_white/shd_silhouette_white.yy",},},

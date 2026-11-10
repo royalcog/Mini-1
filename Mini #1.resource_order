@@ -514,6 +514,7 @@
     {"name":"scr_UI_visibility","order":7,"path":"scripts/scr_UI_visibility/scr_UI_visibility.yy",},
     {"name":"shd_black_key","order":2,"path":"shaders/shd_black_key/shd_black_key.yy",},
     {"name":"shd_button_highlight","order":4,"path":"shaders/shd_button_highlight/shd_button_highlight.yy",},
+    {"name":"shd_dream_post","order":6,"path":"shaders/shd_dream_post/shd_dream_post.yy",},
     {"name":"shd_night_dream","order":5,"path":"shaders/shd_night_dream/shd_night_dream.yy",},
     {"name":"shd_shadow_tint","order":1,"path":"shaders/shd_shadow_tint/shd_shadow_tint.yy",},
     {"name":"shd_tower_wrap","order":3,"path":"shaders/shd_tower_wrap/shd_tower_wrap.yy",},
