@@ -543,6 +543,8 @@
     {"name":"snd_dadblast","order":76,"path":"sounds/snd_dadblast/snd_dadblast.yy",},
     {"name":"snd_damagetaken","order":4,"path":"sounds/snd_damagetaken/snd_damagetaken.yy",},
     {"name":"snd_dark_odd","order":64,"path":"sounds/snd_dark_odd/snd_dark_odd.yy",},
+    {"name":"snd_doorclose","order":80,"path":"sounds/snd_doorclose/snd_doorclose.yy",},
+    {"name":"snd_dooropen","order":81,"path":"sounds/snd_dooropen/snd_dooropen.yy",},
     {"name":"snd_empty","order":2,"path":"sounds/snd_empty/snd_empty.yy",},
     {"name":"snd_error","order":30,"path":"sounds/snd_error/snd_error.yy",},
     {"name":"snd_explosion_firework","order":77,"path":"sounds/snd_explosion_firework/snd_explosion_firework.yy",},

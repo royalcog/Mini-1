@@ -697,6 +697,8 @@
     {"id":{"name":"snd_dadblast","path":"sounds/snd_dadblast/snd_dadblast.yy",},},
     {"id":{"name":"snd_damagetaken","path":"sounds/snd_damagetaken/snd_damagetaken.yy",},},
     {"id":{"name":"snd_dark_odd","path":"sounds/snd_dark_odd/snd_dark_odd.yy",},},
+    {"id":{"name":"snd_doorclose","path":"sounds/snd_doorclose/snd_doorclose.yy",},},
+    {"id":{"name":"snd_dooropen","path":"sounds/snd_dooropen/snd_dooropen.yy",},},
     {"id":{"name":"snd_empty","path":"sounds/snd_empty/snd_empty.yy",},},
     {"id":{"name":"snd_error","path":"sounds/snd_error/snd_error.yy",},},
     {"id":{"name":"snd_explosion_firework","path":"sounds/snd_explosion_firework/snd_explosion_firework.yy",},},

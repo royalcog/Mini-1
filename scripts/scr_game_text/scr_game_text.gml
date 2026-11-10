@@ -123,6 +123,25 @@ function scr_game_text(_text_id)
 			scr_text("* Carol, do you wanna...", "rudy", 4);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* Yes.", "carol", 6);
+			
+			// --- Rudy and Carol head out to the right ---
+			// Z can't start self_7 until Carol has stopped
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
+			
+			// Carol: down to Rudy's level first (y 304 -> 356 = 52px at 2px/frame = 26 frames),
+			// then right until she's just short of the edge (x 470 -> 820 = 350px = 175 frames)
+			scr_char_move_after_textbox(obj_carol, spr_carol_walk_down,  true, 0, 1, 2, 26);
+			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 175);
+			
+			// Rudy: starts walking right at the same time as Carol and keeps going, all the way offscreen
+			// (x 516 -> 916 = 400px = 200 frames; he's gone by about frame 185, before Carol stops at frame 201)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				scr_char_move_now(obj_rudy, spr_rudy_walk_right_worried, true, 1, 0, 2, 200);
+			}, 0);
+			
+			// Carol has stopped: Z can open self_7 now
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 203);
 		break;
 		
 		// (Rudy and Carol start walking out, but Carol stops right before going offscreen)
@@ -131,6 +150,11 @@ function scr_game_text(_text_id)
 			scr_text("* Next time you call me, Asgore.", "carol", 1);
 			scr_text("* Hang up the phone afterwards.", "carol", 9);
 			scr_text("* ...", "asgorepol", 15);
+			
+			// --- Carol leaves (x 820 -> offscreen, 80px = 40 frames) ---
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
+			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 40);
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 42);
 		break;
 		
 		// Carol leaves
