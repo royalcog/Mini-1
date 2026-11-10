@@ -73,13 +73,19 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_double_gesture_right, false);
 			scr_text("* This isn't some... conspiracy.", "asgorepol", 19);
 			scr_text("* Why is it so hard for all of you to just...", "asgorepol", 16);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_gesture_right, false);
 			scr_text("* BELIEVE me???", "asgorepol", 0);
 			scr_text("* Asgore, I think you have had a little too much to drink.", "toriel", 15);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_worried, false);
 			scr_text("* Tori, please.", "asgorepol", 24);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
 			scr_text("* This is real.|* I know it is.", "asgorepol", 22);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_double_gesture_right, false);
 			scr_text("* Isn't there...", "asgorepol", 18);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* Shouldn't there be trust in a marriage!?", "asgorepol", 3);
 			scr_text("* Asgore, this craziness is not part of the man I married.", "toriel", 6);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_upset, false);
 			scr_text("* I've forgiven you for many things before, but this?", "toriel", 7);
 			scr_text("* You don't spend any time with me or the children anymore.", "toriel", 12);
 			scr_text("* You barely leave this house,", "toriel", 6);
@@ -87,10 +93,16 @@ function scr_game_text(_text_id)
 			scr_text("* The only phone calls you make are to Officer Undyne these days...", "toriel", 15);
 			scr_text("* ...", "carol", 8);
 			scr_text("* Carol, was there something you would like to say?", "toriel", 9);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_right, false);
 			scr_text("* He's been calling me too.", "carol", 3);
 			scr_text("* To talk about... all of this.", "carol", 9);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_right_upset, false);
 			scr_text("* ...", "toriel", 3);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_mad_right, false);
 			scr_text("* Tori, I can explain", "asgorepol", 16);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 				scr_text_cutoff_skip(21);
 			scr_text("* Do not \"Tori\" me, Asgore.", "toriel", 14);
 			scr_text("* Undyne is one thing, but Carol too?", "toriel", 6);
@@ -98,7 +110,9 @@ function scr_game_text(_text_id)
 				scr_text_cutoff_skip(71);
 			scr_text("* Enough with the excuses.", "toriel", 3);
 			scr_text("* Just... tell me the truth.", "toriel", 10);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_right_upset, false);
 			scr_text("* Is it... me?", "toriel", 12);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_worried, false);
 			scr_text("* No, no. This is nothing of that sort, Toriel.", "asgorepol", 17);
 			scr_text("* This is real, solid proof I've been collecting.", "asgorepol", 23);
 			scr_text("* Trust me, when this comes into the light...", "asgorepol", 31);
@@ -107,6 +121,7 @@ function scr_game_text(_text_id)
 			scr_text("* You're a teacher, you should...", "asgorepol", 22);
 			scr_text("* I think it's getting a bit late.", "rudy", 3);
 			scr_text("* Carol, do you wanna...", "rudy", 4);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* Yes.", "carol", 6);
 		break;
 		

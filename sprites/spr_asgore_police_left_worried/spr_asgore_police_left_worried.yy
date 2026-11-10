@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Police",
-    "path":"folders/Sprites/Characters/Asgore/Police.yy",
+    "name":"Normal",
+    "path":"folders/Sprites/Characters/Asgore/Police/Normal.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
