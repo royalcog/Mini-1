@@ -1552,6 +1552,7 @@
     {"id":{"name":"spr_toriel_mad_right","path":"sprites/spr_toriel_mad_right/spr_toriel_mad_right.yy",},},
     {"id":{"name":"spr_toriel_shocked_left","path":"sprites/spr_toriel_shocked_left/spr_toriel_shocked_left.yy",},},
     {"id":{"name":"spr_toriel_shocked_right","path":"sprites/spr_toriel_shocked_right/spr_toriel_shocked_right.yy",},},
+    {"id":{"name":"spr_toriel_walk_down_upset","path":"sprites/spr_toriel_walk_down_upset/spr_toriel_walk_down_upset.yy",},},
     {"id":{"name":"spr_toriel_walk_right_upset","path":"sprites/spr_toriel_walk_right_upset/spr_toriel_walk_right_upset.yy",},},
     {"id":{"name":"spr_toriel_walk_right","path":"sprites/spr_toriel_walk_right/spr_toriel_walk_right.yy",},},
     {"id":{"name":"spr_tower_fizzleout","path":"sprites/spr_tower_fizzleout/spr_tower_fizzleout.yy",},},

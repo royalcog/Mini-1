@@ -1309,6 +1309,7 @@
     {"name":"spr_toriel_mad_left","order":1,"path":"sprites/spr_toriel_mad_left/spr_toriel_mad_left.yy",},
     {"name":"spr_toriel_shocked_left","order":3,"path":"sprites/spr_toriel_shocked_left/spr_toriel_shocked_left.yy",},
     {"name":"spr_toriel_shocked_right","order":2,"path":"sprites/spr_toriel_shocked_right/spr_toriel_shocked_right.yy",},
+    {"name":"spr_toriel_walk_down_upset","order":8,"path":"sprites/spr_toriel_walk_down_upset/spr_toriel_walk_down_upset.yy",},
     {"name":"spr_toriel_walk_right_upset","order":5,"path":"sprites/spr_toriel_walk_right_upset/spr_toriel_walk_right_upset.yy",},
     {"name":"spr_toriel_walk_right","order":4,"path":"sprites/spr_toriel_walk_right/spr_toriel_walk_right.yy",},
     {"name":"spr_tower_fizzleout","order":12,"path":"sprites/spr_tower_fizzleout/spr_tower_fizzleout.yy",},
