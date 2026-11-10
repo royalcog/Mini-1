@@ -24,3 +24,17 @@ for (var i = 0; i < mote_count; i++)
         size: choose(2, 2, 4)
     });
 }
+
+// ===== soft blur + glow (whole screen, textbox stays sharp) =====
+post_soft   = 0.35;  // blur mix (0 = sharp, 1 = fully blurry)
+post_spread = 1.5;   // blur size, in game pixels
+post_glow   = 0.8;   // bloom strength (0 = none)
+post_thresh = 0.45;  // how bright something must be to glow (lower = more things glow)
+
+u_post_texel  = shader_get_uniform(shd_dream_post, "u_texel");
+u_post_step   = shader_get_uniform(shd_dream_post, "u_step");
+u_post_soft   = shader_get_uniform(shd_dream_post, "u_soft");
+u_post_glow   = shader_get_uniform(shd_dream_post, "u_glow");
+u_post_thresh = shader_get_uniform(shd_dream_post, "u_thresh");
+
+application_surface_draw_enable(false); // Post Draw draws the screen instead, through the shader

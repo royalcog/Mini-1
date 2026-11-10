@@ -1,0 +1,1 @@
+application_surface_draw_enable(true); // back to normal once we leave the flashback room
