@@ -125,7 +125,7 @@ function scr_game_text(_text_id)
 			scr_text("* Yes.", "carol", 6);
 		break;
 		
-		// (Rudy and Carol get up, but Carol stops at the door after Asgore leaves)
+		// (Rudy and Carol start walking out, but Carol stops right before going offscreen)
 		case "self_7":
 			scr_text("* One more thing.", "carol", 0);
 			scr_text("* Next time you call me, Asgore.", "carol", 1);
