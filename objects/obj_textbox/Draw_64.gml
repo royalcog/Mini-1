@@ -248,7 +248,7 @@ if global.speaker_sprite[page] != noone && !global.hide_face && !hide_face[page]
         _portrait_x += 12;   // nudge right (bigger = further right)
     }
 	
-    else if (_portrait_spr == spr_asgore_dialogue)
+    else if (_portrait_spr == (spr_asgore_dialogue) || (spr_asgore_police_dialogue))
     {
         _portrait_x += 6;   // nudge right (bigger = further right)
     }

@@ -73,8 +73,8 @@
   "nineSlice":null,
   "origin":1,
   "parent":{
-    "name":"Dialogue Portraits",
-    "path":"folders/Dialogue/Dialogue Portraits.yy",
+    "name":"Asgore",
+    "path":"folders/Dialogue/Dialogue Portraits/Asgore.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

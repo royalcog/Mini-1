@@ -1326,6 +1326,12 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 				snd[global.page_number] = snd_asgore;
 			break;
 			
+			case "asgorepol":
+				scr_text_color_default(make_colour_rgb(209, 156, 80));
+				global.speaker_sprite[global.page_number] = spr_asgore_police_dialogue;
+				snd[global.page_number] = snd_asgore;
+			break;
+			
 			case "carol":
 				scr_text_color_default(make_colour_rgb(0, 162, 232));
 				global.speaker_sprite[global.page_number] = spr_carol_dialogue;
@@ -1811,28 +1817,38 @@ function scr_draw_self_dream()
 {
 	if (!instance_exists(obj_dream_overlay)) { draw_self(); return; }
 
-	if (!variable_global_exists("u_dream"))
+	if (!variable_global_exists("u_dream2"))
 	{
-		global.u_dream = {
-			time: shader_get_uniform(shd_night_dream, "u_time"),
-			uvs:  shader_get_uniform(shd_night_dream, "u_uvs"),
-			tint: shader_get_uniform(shd_night_dream, "u_tint"),
-			wave: shader_get_uniform(shd_night_dream, "u_wave"),
-			blur: shader_get_uniform(shd_night_dream, "u_blur"),
-			glow: shader_get_uniform(shd_night_dream, "u_glow"),
+		global.u_dream2 = {
+			time:  shader_get_uniform(shd_night_dream, "u_time"),
+			uvs:   shader_get_uniform(shd_night_dream, "u_uvs"),
+			pxuv:  shader_get_uniform(shd_night_dream, "u_pxuv"),
+			tint:  shader_get_uniform(shd_night_dream, "u_tint"),
+			wave:  shader_get_uniform(shd_night_dream, "u_wave"),
+			freq:  shader_get_uniform(shd_night_dream, "u_freq"),
+			speed: shader_get_uniform(shd_night_dream, "u_speed"),
+			blur:  shader_get_uniform(shd_night_dream, "u_blur"),
+			glow:  shader_get_uniform(shd_night_dream, "u_glow"),
 		};
 	}
-	var _u  = global.u_dream;
+	var _u  = global.u_dream2;
 	var _o  = obj_dream_overlay;
 	var _uv = sprite_get_uvs(sprite_index, image_index);
 
+	// how far one room pixel is on the texture (sprites can be trimmed, hence _uv[6]/_uv[7])
+	var _drawn_w = sprite_get_width(sprite_index)  * _uv[6] * image_xscale;
+	var _drawn_h = sprite_get_height(sprite_index) * _uv[7] * abs(image_yscale);
+
 	shader_set(shd_night_dream);
-	shader_set_uniform_f(_u.time, current_time / 1000);
-	shader_set_uniform_f(_u.uvs, _uv[0], _uv[1], _uv[2], _uv[3]);
-	shader_set_uniform_f(_u.tint, colour_get_red(_o.night_tint) / 255, colour_get_green(_o.night_tint) / 255, colour_get_blue(_o.night_tint) / 255);
-	shader_set_uniform_f(_u.wave, _o.dream_wave);
-	shader_set_uniform_f(_u.blur, _o.dream_blur);
-	shader_set_uniform_f(_u.glow, _o.dream_glow);
+	shader_set_uniform_f(_u.time,  current_time / 1000);
+	shader_set_uniform_f(_u.uvs,   _uv[0], _uv[1], _uv[2], _uv[3]);
+	shader_set_uniform_f(_u.pxuv,  (_uv[2] - _uv[0]) / _drawn_w, (_uv[3] - _uv[1]) / _drawn_h);
+	shader_set_uniform_f(_u.tint,  colour_get_red(_o.night_tint) / 255, colour_get_green(_o.night_tint) / 255, colour_get_blue(_o.night_tint) / 255);
+	shader_set_uniform_f(_u.wave,  _o.dream_wave);
+	shader_set_uniform_f(_u.freq,  _o.dream_wave_freq);
+	shader_set_uniform_f(_u.speed, _o.dream_wave_speed);
+	shader_set_uniform_f(_u.blur,  _o.dream_blur);
+	shader_set_uniform_f(_u.glow,  _o.dream_glow);
 	draw_self();
 	shader_reset();
 }

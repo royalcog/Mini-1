@@ -29,6 +29,9 @@ function scr_game_text(_text_id)
 			scr_text("* I'm just...", "asgore", 22);
 			scr_text("* Remembering what happened.", "asgore", 46);
 			scr_text("* ...", "asgore", 47);
+		break;
+		
+		case "self_3":
 			scr_text("* I pushed everyone away.", "asgore", 20);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_up, false);
 			scr_text("* Toriel, the Holidays...", "asgore", 36);
@@ -45,7 +48,7 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "asgore", 47);
 		break;
 		
-		case "self_3":
+		case "self_4":
 			scr_flashback_dark(true);   // fade to black + no portraits from here on
 			scr_text("* After... that day...", "asgore", 47);
 			scr_text("* There was another incident.", "asgore", 46);
@@ -54,8 +57,142 @@ function scr_game_text(_text_id)
 			scr_text("* The Holidays were over, and the kids were all asleep.", "asgore", 9);
 		break;
 		
-		case "self_4":
+		case "self_5":
 			scr_flashback_dark(false, 0.02, rm_one);
+		break;
+		
+		case "self_6":
+			scr_text("* Asgore, we're getting worried about you.", "rudy", 4);
+			scr_text("* This is... all you do.", "rudy", 9);
+			scr_text("* The flower shop is growing vines on it, buddy.", "rudy", 7);
+			scr_text("* ...", "asgore", 47);
+			scr_text("* Don't you all see?", "asgore", 36);
+			scr_text("* These fountains aren't just a means of transportation.", "asgore", 33);
+			scr_text("* You can talk to inanimate objects! Speak with people from the dead!", "asgore", 18);
+			scr_text("* This isn't some... conspiracy.", "asgore", 22);
+			scr_text("* Why is it so hard for all of you to just...", "asgore", 20);
+			scr_text("* BELIEVE me???", "asgore", 28);
+			scr_text("* Asgore, I think you have had a little too much to drink.", "toriel", 15);
+			scr_text("* Tori, please.", "asgore", 36);
+			scr_text("* This is real.|* I know it is.", "asgore", 34);
+			scr_text("* Isn't there...", "asgore", 46);
+			scr_text("* Shouldn't there be trust in a marriage!?", "asgore", 38);
+			scr_text("* Asgore, this craziness is not part of the man I married.", "toriel", 6);
+			scr_text("* I've forgiven you for many things before, but this?", "toriel", 7);
+			scr_text("* You don't spend any time with me or the children anymore.", "toriel", 12);
+			scr_text("* You barely leave this house,", "toriel", 6);
+			scr_text("* and when you do it's to wander towards that bunker at the bottom of town.", "toriel", 7);
+			scr_text("* The only phone calls you make are to Officer Undyne these days...", "toriel", 15);
+			scr_text("* ...", "carol", 8);
+			scr_text("* Carol, was there something you would like to say?", "toriel", 9);
+			scr_text("* He's been calling me too.", "carol", 3);
+			scr_text("* To talk about... all of this.", "carol", 9);
+			scr_text("* ...", "toriel", 3);
+			scr_text("* Tori, I can explain", "asgore", 36);
+				scr_text_cutoff_skip(21);
+			scr_text("* Do not \"Tori\" me, Asgore.", "toriel", 14);
+			scr_text("* Undyne is one thing, but Carol too?", "toriel", 6);
+			scr_text("* It was only once or twice... I had some mayoral questions I needed to", "asgore", 44);
+				scr_text_cutoff_skip(71);
+			scr_text("* Enough with the excuses.", "toriel", 3);
+			scr_text("* Just... tell me the truth.", "toriel", 10);
+			scr_text("* Is it... me?", "toriel", 12);
+			scr_text("* No, no. This is nothing of that sort, Toriel.", "asgore", 36);
+			scr_text("* This is real, solid proof I've been collecting.", "asgore", 34);
+			scr_text("* Trust me, when this comes into the light...", "asgore", 33);
+			scr_text("* It will open up so many areas of study.|* Of research.", "asgore", 18);
+			scr_text("* Don't you want that?", "asgore", 17);
+			scr_text("* You're a teacher, you should...", "asgore", 34);
+			scr_text("* I think it's getting a bit late.", "rudy", 3);
+			scr_text("* Carol, do you wanna...", "rudy", 4);
+			scr_text("* Yes.", "carol", 6);
+		break;
+		
+		// (Rudy and Carol get up, but Carol stops at the door after Asgore leaves)
+		case "self_7":
+			scr_text("* One more thing.", "carol", 0);
+			scr_text("* Next time you call me, Asgore.", "carol", 1);
+			scr_text("* Hang up the phone afterwards.", "carol", 9);
+			scr_text("* ...", "asgore", 47);
+		break;
+		
+		// (Carol leaves)
+		case "self_8":
+			scr_text("* ...", "toriel", 3);
+			scr_text("* Asgore...?", "toriel", 12);
+			scr_text("* It was nothing, I was just...", "asgore", 44);
+			scr_text("* ...", "asgore", 47);
+			scr_text("* It was nothing. Really.", "asgore", 46);
+			scr_text("* ...", "toriel", 10);
+			scr_text("* How can I trust you?", "toriel", 12);
+			scr_text("* ...", "asgore", 13);
+			scr_text("* Toriel, if you just let me explain all of this to you...", "asgore", 36);
+			scr_text("* You've tried, Asgore. So many times.", "toriel", 10);
+			scr_text("* But this all just sounds like some...", "toriel", 15);
+			scr_text("* ...conspiratory garba", "toriel", 6);
+				scr_text_cutoff_skip(23);
+			scr_text("* This is NOT conspiratory! This is NOT garbage!", "asgore", 29);
+			scr_text("* This is real, damn it!", "asgore", 30);
+			scr_text("* I've. Seen. The fountains!", "asgore", 28);
+			scr_text("* One was in my own SHOP, for crying out loud!", "asgore", 29);
+			scr_text("* And I made it! It wasn't even that hard to make!", "asgore", 31);
+			scr_text("* Asgore, you're spiraling again.", "toriel", 9);
+			scr_text("* If you really made it, then...", "toriel", 15);
+			scr_text("* Recreate it.", "toriel", 6);
+			scr_text("* ...", "asgore", 25);
+			scr_text("* ...What?", "asgore", 26);
+			scr_text("* Make another \"fountain\".", "toriel", 7);
+			scr_text("* Right here, right now.", "toriel", 6);
+			scr_text("* In...", "asgore", 25);
+			scr_text("* In the house?", "asgore", 26);
+			scr_text("* In the house.", "toriel", 3);
+			scr_text("* ...", "asgore", 13);
+			scr_text("* It's too dangerous...", "asgore", 46);
+			scr_text("* ...especially with the kids in the house.", "asgore", 47);
+			scr_text("* If you want me to believe you, do it.", "toriel", 6);
+			scr_text("* I...", "asgore", 22);
+			scr_text("* I'm not going to compromise our safety just for proof, Toriel.", "asgore", 12);
+			scr_text("* But you still need to believe me.", "asgore", 36);
+			scr_text("* If you come to the Flower Shop, I can", "asgore", 34);
+				scr_text_cutoff_skip(39);
+			scr_text("* Asgore.", "toriel", 3);
+			scr_text("* This is...", "toriel", 12);
+			scr_text("* ...", "toriel", 10);
+			scr_text("* Why are you doing this?", "toriel", 12);
+			scr_text("* It's...", "asgore", 46);
+				// (Asgore turns away)
+			scr_text("* I...", "asgore", 47);
+			scr_text("* You what?", "toriel", 9);
+			scr_text("* I'll... write it down.", "asgore", 20);
+			scr_text("* I'd prefer not to... say it out loud.", "asgore", 21);
+		break;
+		
+		// (Asgore writes it down, and Toriel walks over to look at it)
+		case "self_9":
+			scr_text("* ...", "toriel", 3);
+			scr_text("* !", "toriel", 13);
+			scr_text("* A-Asgore...", "toriel", 8);
+			scr_text("* This can't be...", "toriel", 8);
+			scr_text("* You...", "toriel", 12);
+			scr_text("* You wanted the truth?", "asgore", 46);
+			scr_text("* I told you... I'm ashamed of what happened.", "asgore", 20);
+			scr_text("* But that's why I need to prove these fountains!", "asgore", 36);
+			scr_text("* I need to show everyone that these things are evil.", "asgore", 29);
+			scr_text("* I...", "asgore", 47);
+			scr_text("* Asgore.", "toriel", 10);
+			scr_text("* ...", "asgore", 13);
+			scr_text("* You should get some rest.", "toriel", 11);
+			scr_text("* You...", "asgore", 25);
+			scr_text("* You STILL don't believe me?", "asgore", 38);
+			scr_text("* I think you've been working a little too hard lately.", "toriel", 11);
+			scr_text("* You need a mental refresh.", "toriel", 4);
+			scr_text("* ...", "asgore", 47);
+		break;
+		
+		// (Asgore runs out of the house)
+		case "self_10":
+			scr_text("* Asgore!", "toriel", 13);
+			// (the screen fades out)
 		break;
 /*
 
