@@ -118,7 +118,7 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "asgorepol", 15);
 		break;
 		
-		// (Carol leaves)
+		// Carol leaves
 		case "self_8":
 			scr_text("* ...", "toriel", 3);
 			scr_text("* Asgore...?", "toriel", 12);
@@ -139,24 +139,29 @@ function scr_game_text(_text_id)
 			scr_text("* One was in my own SHOP, for crying out loud!", "asgorepol", 25);
 			scr_text("* And I made it! It wasn't even that hard to make!", "asgorepol", 9);
 			scr_text("* Asgore, you're spiraling again.", "toriel", 9);
-			scr_text("* If you really made it, then...", "toriel", 15);
-			scr_text("* Recreate it.", "toriel", 6);
-			scr_text("* ...", "asgorepol", 26);
-			scr_text("* ...What?", "asgorepol", 32);
-			scr_text("* Make another \"fountain\".", "toriel", 7);
-			scr_text("* Right here, right now.", "toriel", 6);
-			scr_text("* In...", "asgorepol", 22);
-			scr_text("* In the house?", "asgorepol", 26);
-			scr_text("* In the house.", "toriel", 3);
+			scr_text("* I'm...", "asgorepol", 18);
+			scr_text("* ...", "asgorepol", 6);
+			scr_text("* So come with me. Let me show you the truth of the matter.", "asgorepol", 23);
+			scr_text("* ...What do you mean?", "toriel", 12);
+			scr_text("* I can make another fountain right now. At the Flower Shop.", "asgorepol", 31);
+			scr_text("* You just need to co", "asgorepol", 24);
+				scr_text_cutoff_skip(21);
+			scr_text("* If what you say is true, Asgore...", "toriel", 6);
+			scr_text("* I am NOT leaving these kids alone in the house.", "toriel", 14);
+			scr_text("* If these \"fountains\" are truly as dangerous as you say they are,", "toriel", 7);
+			scr_text("* Then clearly something isn't right in our neighborhood.", "toriel", 6);
+			scr_text("* Our family will not be vulnerable to what's out there.", "toriel", 14);
+			scr_text("* ...", "toriel", 10);
+			scr_text("* But it's not true. None of it is.", "toriel", 15);
+			scr_text("* Toriel, that's not fair", "asgorepol", 16);
+				scr_text_cutoff_skip(25);
+			scr_text("* Fair?", "toriel", 6);
+			scr_text("* Don't bring up \"fair\", Asgore.", "toriel", 14);
 			scr_text("* ...", "asgorepol", 4);
-			scr_text("* It's too dangerous...", "asgorepol", 18);
-			scr_text("* ...especially with the kids in the house.", "asgorepol", 21);
-			scr_text("* If you want me to believe you, do it.", "toriel", 6);
-			scr_text("* I...", "asgorepol", 19);
-			scr_text("* I'm not going to compromise our safety just for proof, Toriel.", "asgorepol", 14);
+			scr_text("* I would never compromise our safety just for proof, Toriel.", "asgorepol", 14);
 			scr_text("* But you still need to believe me.", "asgorepol", 24);
-			scr_text("* If you come to the Flower Shop, I can", "asgorepol", 23);
-				scr_text_cutoff_skip(39);
+			scr_text("* If you just come with me to the Flower Shop, I can", "asgorepol", 23);
+				scr_text_cutoff_skip(52);
 			scr_text("* Asgore.", "toriel", 3);
 			scr_text("* This is...", "toriel", 12);
 			scr_text("* ...", "toriel", 10);
@@ -166,6 +171,8 @@ function scr_game_text(_text_id)
 			scr_text("* I...", "asgorepol", 6);
 			scr_text("* You what?", "toriel", 9);
 			scr_text("* I'll... write it down.", "asgorepol", 6);
+			scr_text("* I'd prefer not to... say it out loud.", "asgorepol", 5);
+		break;scr_text("* I'll... write it down.", "asgorepol", 6);
 			scr_text("* I'd prefer not to... say it out loud.", "asgorepol", 5);
 		break;
 		
