@@ -123,6 +123,8 @@ function scr_game_text(_text_id)
 			scr_text("* Carol, do you wanna...", "rudy", 4);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* Yes.", "carol", 6);
+			scr_text("* Let me walk you out.", "toriel", 14);
+			scr_text("* We're... okay.", "rudy", 3);
 			
 			// --- Rudy and Carol head out to the right ---
 			// Z can't start self_7 until Carol has stopped
