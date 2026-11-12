@@ -285,6 +285,58 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* I'd prefer not to... say it out loud.", "asgorepol", 5);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
+			// --- Asgore writes it down and leaves it on the oven, Toriel goes to read it ---
+			// (the house is drawn at 2x around its centre (520, 240), so the oven's bottom at 457, 253 in the
+			//  room editor is really at 394, 266 in-game; the stovetop is around y 195-228)
+			// Z can't start self_10 until Toriel's looking at the paper
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
+			
+			// Asgore walks up and over to stand in front of the oven (feet at 395, 290), 80 frames
+			// (worked out from wherever he actually is, so he always lands on the same spot)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 80;
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, (395 - obj_asgore.x) / _dur, (290 - obj_asgore.y) / _dur, 1, _dur);
+			}, 0);
+			// there: stand still, facing the oven
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				with (obj_asgore) { sprite_index = spr_asgore_police_walk_up; image_index = 0; image_speed = 0; }
+			}, 81);
+			
+			// puts the paper down on the stovetop (he's in front of it, so it shows once he steps away)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				instance_create_depth(395, 212, -101, obj_paper);
+			}, 105);
+			
+			// steps off to the left (395 -> 295 = 100px at 2px/frame = 50 frames)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				scr_char_move_now(obj_asgore, spr_asgore_police_left, false, -1, 0, 2, 50);
+			}, 125);
+			// turns back to face Toriel
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				with (obj_asgore) { sprite_index = spr_asgore_police_right; image_index = 0; image_speed = 0; }
+			}, 176);
+			
+			// --- Toriel walks over to the oven (feet at 400, 290), 120 frames ---
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 120;
+				scr_char_move_now(obj_toriel, spr_toriel_walk_left_worried, true, (400 - obj_toriel.x) / _dur, (290 - obj_toriel.y) / _dur, 1, _dur);
+			}, 200);
+			// turns to look at the paper
+			// NOTE: there's no up-facing Toriel sprite yet, so she just stops facing left for now —
+			// swap spr_toriel_walk_left_worried here for her up sprite once it exists
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				with (obj_toriel) { sprite_index = spr_toriel_walk_left_worried; image_index = 0; image_speed = 0; }
+			}, 321);
+			
+			// Z can open self_10
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 345);
 		break;
 		
 		// (Asgore writes it down, and Toriel walks over to look at it)

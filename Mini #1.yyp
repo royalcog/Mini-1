@@ -1563,6 +1563,7 @@
     {"id":{"name":"spr_toriel_walk_left_worried","path":"sprites/spr_toriel_walk_left_worried/spr_toriel_walk_left_worried.yy",},},
     {"id":{"name":"spr_toriel_walk_right_upset","path":"sprites/spr_toriel_walk_right_upset/spr_toriel_walk_right_upset.yy",},},
     {"id":{"name":"spr_toriel_walk_right","path":"sprites/spr_toriel_walk_right/spr_toriel_walk_right.yy",},},
+    {"id":{"name":"spr_toriel_walk_up","path":"sprites/spr_toriel_walk_up/spr_toriel_walk_up.yy",},},
     {"id":{"name":"spr_tower_fizzleout","path":"sprites/spr_tower_fizzleout/spr_tower_fizzleout.yy",},},
     {"id":{"name":"spr_tower_handburst_debris_isolated","path":"sprites/spr_tower_handburst_debris_isolated/spr_tower_handburst_debris_isolated.yy",},},
     {"id":{"name":"spr_tower_handburst_debris","path":"sprites/spr_tower_handburst_debris/spr_tower_handburst_debris.yy",},},
