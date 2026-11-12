@@ -295,19 +295,24 @@ function scr_game_text(_text_id)
 			// Z can't start self_10 until Toriel's looking at the paper
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			
-			// Asgore: walks diagonally up-right to the front of the oven (feet at 395, 290), 80 frames
-			// (uses his walk-up animation the whole way since he has no sideways walk sprite; starts on frame 1, mid-step)
+			// Asgore: right along the floor, over to the oven (to x 395), 72 frames (starts mid-step)
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				var _dur = 80;
+				var _dur = 72;
 				obj_asgore.image_index = 1;
-				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, (395 - obj_asgore.x) / _dur, (290 - obj_asgore.y) / _dur, 1, _dur, false, 0.05, "none", true, false);
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_right, true, (395 - obj_asgore.x) / _dur, 0, 1, _dur, false, 0.05, "none", true, true);
 			}, 0);
+			// then up to the oven (to y 290), 35 frames
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 35;
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, 0, (290 - obj_asgore.y) / _dur, 1, _dur, false, 0.05, "none", true, false);
+			}, 73);
 			// there: stand still, facing the oven
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				with (obj_asgore) { sprite_index = spr_asgore_police_walk_up; image_index = 0; image_speed = 0; }
-			}, 81);
+			}, 109);
 			
 			// puts the paper down on the stovetop (he's in front of it, so it shows once he steps away)
 			scr_custom_call_after_textbox_delayed(function()
@@ -318,7 +323,8 @@ function scr_game_text(_text_id)
 			// steps off to the left (395 -> 295 = 100px at 2px/frame = 50 frames; stays clear of the fridge)
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				scr_char_move_now(obj_asgore, spr_asgore_police_left, false, -1, 0, 2, 50);
+				obj_asgore.image_index = 1;
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_left, true, -1, 0, 2, 50, false, 0.05, "none", true, false);
 			}, 150);
 			// turns back to face Toriel
 			scr_custom_call_after_textbox_delayed(function()
@@ -354,26 +360,38 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "toriel", 3);
 			scr_text("* !", "toriel", 13);
 			scr_text("* A-Asgore...", "toriel", 8);
+				scr_text_shake(0, 999);
 			scr_text("* This can't be...", "toriel", 8);
+				scr_text_shake(0, 999);
 			scr_text("* You...", "toriel", 12);
-			scr_text("* You wanted the truth?", "asgorepol", 27);
+				scr_text_shake(0, 999);
+			scr_text("* You wanted the truth.", "asgorepol", 27);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* I told you... I'm ashamed of what happened.", "asgorepol", 28);
 			scr_text("* But that's why I need to prove these fountains!", "asgorepol", 3);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_gesture_right, false);
 			scr_text("* I need to show everyone that these things are evil.", "asgorepol", 11);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_double_gesture_right, false);
 			scr_text("* I...", "asgorepol", 29);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* Asgore.", "toriel", 10);
 			scr_text("* ...", "asgorepol", 6);
 			scr_text("* You should get some rest.", "toriel", 11);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right_surprised, false);
 			scr_text("* You...", "asgorepol", 33);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
 			scr_text("* You STILL don't believe me?", "asgorepol", 1);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_yelling_right, false);
 			scr_text("* I think you've been working a little too hard lately.", "toriel", 11);
 			scr_text("* You need a mental refresh.", "toriel", 4);
 			scr_text("* ...", "asgorepol", 15);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
 		break;
 		
 		// (Asgore runs out of the house)
 		case "self_11":
 			scr_text("* Asgore!", "toriel", 13);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_shocked_right, false);
 			// (the screen fades out)
 		break;
 /*
