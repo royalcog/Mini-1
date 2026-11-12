@@ -291,52 +291,62 @@ function scr_game_text(_text_id)
 			// Z can't start self_10 until Toriel's looking at the paper
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			
-			// Asgore walks up and over to stand in front of the oven (feet at 395, 290), 80 frames
+			// Asgore: up first (to y 290), 35 frames
 			// (worked out from wherever he actually is, so he always lands on the same spot)
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				var _dur = 80;
-				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, (395 - obj_asgore.x) / _dur, (290 - obj_asgore.y) / _dur, 1, _dur);
+				var _dur = 35;
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, 0, (290 - obj_asgore.y) / _dur, 1, _dur);
 			}, 0);
-			// there: stand still, facing the oven
+			// then right, over to the oven (to x 395), 72 frames
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 72;
+				scr_char_move_now(obj_asgore, spr_asgore_police_right, false, (395 - obj_asgore.x) / _dur, 0, 1, _dur);
+			}, 36);
+			// there: turns to face the oven
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				with (obj_asgore) { sprite_index = spr_asgore_police_walk_up; image_index = 0; image_speed = 0; }
-			}, 81);
+			}, 109);
 			
 			// puts the paper down on the stovetop (he's in front of it, so it shows once he steps away)
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				instance_create_depth(395, 212, -101, obj_paper);
-			}, 105);
+			}, 130);
 			
 			// steps off to the left (395 -> 295 = 100px at 2px/frame = 50 frames)
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				scr_char_move_now(obj_asgore, spr_asgore_police_left, false, -1, 0, 2, 50);
-			}, 125);
+			}, 150);
 			// turns back to face Toriel
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				with (obj_asgore) { sprite_index = spr_asgore_police_right; image_index = 0; image_speed = 0; }
-			}, 176);
+			}, 201);
 			
-			// --- Toriel walks over to the oven (feet at 400, 290), 120 frames ---
+			// --- Toriel: up first (to y 290), 33 frames ---
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 33;
+				scr_char_move_now(obj_toriel, spr_toriel_walk_up, true, 0, (290 - obj_toriel.y) / _dur, 1, _dur);
+			}, 225);
+			// then left, over to the oven (to x 400), 120 frames
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				var _dur = 120;
-				scr_char_move_now(obj_toriel, spr_toriel_walk_left_worried, true, (400 - obj_toriel.x) / _dur, (290 - obj_toriel.y) / _dur, 1, _dur);
-			}, 200);
+				scr_char_move_now(obj_toriel, spr_toriel_walk_left_worried, true, (400 - obj_toriel.x) / _dur, 0, 1, _dur);
+			}, 259);
 			// turns to look at the paper
-			// NOTE: there's no up-facing Toriel sprite yet, so she just stops facing left for now —
-			// swap spr_toriel_walk_left_worried here for her up sprite once it exists
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				with (obj_toriel) { sprite_index = spr_toriel_walk_left_worried; image_index = 0; image_speed = 0; }
-			}, 321);
+				with (obj_toriel) { sprite_index = spr_toriel_walk_up; image_index = 0; image_speed = 0; }
+			}, 380);
 			
 			// Z can open self_10
-			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 345);
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 400);
 		break;
 		
 		// (Asgore writes it down, and Toriel walks over to look at it)
