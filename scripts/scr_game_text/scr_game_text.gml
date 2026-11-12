@@ -53,7 +53,7 @@ function scr_game_text(_text_id)
 			scr_text("* After... that day...", "asgore", 47);
 			scr_text("* There was another incident.", "asgore", 46);
 			scr_text("* More driven \"craziness\", as they called it.", "asgore", 22);
-			scr_text("* I was... sitting at home, one night.", "asgore", 13);
+			scr_text("* I was... at home, one night.", "asgore", 13);
 			scr_text("* The Holidays were over, and the kids were all asleep.", "asgore", 9);
 		break;
 		
@@ -75,6 +75,7 @@ function scr_game_text(_text_id)
 			scr_text("* Why is it so hard for all of you to just...", "asgorepol", 16);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_gesture_right, false);
 			scr_text("* BELIEVE me???", "asgorepol", 0);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_yelling_right, false);
 			scr_text("* Asgore, I think you have had a little too much to drink.", "toriel", 15);
 				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_worried, false);
 			scr_text("* Tori, please.", "asgorepol", 24);
@@ -84,6 +85,7 @@ function scr_game_text(_text_id)
 			scr_text("* Isn't there...", "asgorepol", 18);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* Shouldn't there be trust in a marriage!?", "asgorepol", 3);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_walk_up, false);
 			scr_text("* Asgore, this craziness is not part of the man I married.", "toriel", 6);
 				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_upset, false);
 			scr_text("* I've forgiven you for many things before, but this?", "toriel", 7);
@@ -114,36 +116,51 @@ function scr_game_text(_text_id)
 			scr_text("* Is it... me?", "toriel", 12);
 				scr_obj_sprite_on_page(obj_toriel, spr_toriel_down_worried, false);
 			scr_text("* No, no. This is nothing of that sort, Toriel.", "asgorepol", 17);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_walk_up, false);
 			scr_text("* This is real, solid proof I've been collecting.", "asgorepol", 23);
 			scr_text("* Trust me, when this comes into the light...", "asgorepol", 31);
 			scr_text("* It will open up so many areas of study.|* Of research.", "asgorepol", 30);
 			scr_text("* Don't you want that?", "asgorepol", 24);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* You're a teacher, you should...", "asgorepol", 22);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_walk_up, false);
 			scr_text("* I think it's getting a bit late.", "rudy", 3);
 			scr_text("* Carol, do you wanna...", "rudy", 4);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* Yes.", "carol", 6);
 			scr_text("* Let me walk you out.", "toriel", 14);
+				// Toriel heads toward the Holidays (x 310 -> 400, about halfway to them)
+				scr_char_move_on_page(obj_toriel, spr_toriel_walk_right_upset, true, 1, 0, 2, 45);
+				// as soon as that walk ends, back to her standing frame (frame 0)
+				scr_obj_sprite_on_page_delayed(obj_toriel, spr_toriel_walk_right_upset, false, 0, 46);
 			scr_text("* We're... okay.", "rudy", 3);
+				// in case the last page got skipped before she finished: standing frame here too
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_right_upset, false);
 			
-			// --- Rudy and Carol head out to the right ---
-			// Z can't start self_7 until Carol has stopped
+			// --- Rudy and Carol head for the door (x 1000, just offscreen right) ---
+			// Z can't start self_7 until Rudy's out the door
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			
 			// Carol: down to Rudy's level first (y 304 -> 356 = 52px at 2px/frame = 26 frames),
-			// then right until she's just short of the edge (x 470 -> 820 = 350px = 175 frames)
+			// then right, stopping just before the edge of the screen (x 470 -> 790 = 320px = 160 frames, stops at frame 186)
 			scr_char_move_after_textbox(obj_carol, spr_carol_walk_down,  true, 0, 1, 2, 26);
-			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 175);
+			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 160);
 			
-			// Rudy: starts walking right at the same time as Carol and keeps going, all the way offscreen
-			// (x 516 -> 916 = 400px = 200 frames; he's gone by about frame 185, before Carol stops at frame 201)
+			// Rudy: a little slower, so he's still on screen and walking when Carol stops (he's at ~841 then)
+			// keeps going offscreen to the door (x 516 -> 1000 = 484px at 1.75px/frame = 277 frames)
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				scr_char_move_now(obj_rudy, spr_rudy_walk_right_worried, true, 1, 0, 2, 200);
+				scr_char_move_now(obj_rudy, spr_rudy_walk_right_worried, true, 1, 0, 1.75, 277);
 			}, 0);
 			
-			// Carol has stopped: Z can open self_7 now
-			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 203);
+			// Rudy reaches the door
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				audio_play_sound(snd_dooropen, 1, false);
+			}, 277);
+			
+			// Z can open self_7 now
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 280);
 		break;
 		
 		// (Rudy and Carol start walking out, but Carol stops right before going offscreen)
@@ -152,73 +169,126 @@ function scr_game_text(_text_id)
 			scr_text("* Next time you call me, Asgore.", "carol", 1);
 			scr_text("* Hang up the phone afterwards.", "carol", 9);
 			scr_text("* ...", "asgorepol", 15);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
 			
-			// --- Carol leaves (x 820 -> offscreen, 80px = 40 frames) ---
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
-			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 40);
-			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 42);
+			
+			// --- Carol leaves (x 790 -> the door at 1000 = 210px = 105 frames) ---
+			scr_char_move_after_textbox(obj_carol, spr_carol_walk_right, true, 1, 0, 2, 105);
+			
+			// she reaches the door: closes it behind her
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				audio_play_sound(snd_doorclose, 1, false);
+			}, 106);
+			
+			// --- Toriel goes after them, just a little (starts once the door's shut) ---
+			// down to the Holidays' level (y 304 -> 356 = 26 frames)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				scr_char_move_now(obj_toriel, spr_toriel_walk_down_upset, true, 0, 1, 2, 26);
+			}, 115);
+			// then right, stopping halfway between the middle of the screen and the right edge (x 400 -> 640 = 120 frames)
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				scr_char_move_now(obj_toriel, spr_toriel_walk_right_upset, true, 1, 0, 2, 120);
+			}, 141);
+			
+			// Toriel's stopped: Z can open self_8
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 263);
 		break;
 		
 		// Carol leaves
 		case "self_8":
 			scr_text("* ...", "toriel", 3);
 			scr_text("* Asgore...?", "toriel", 12);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_left_worried, false);
 			scr_text("* It was nothing, I was just...", "asgorepol", 8);
 			scr_text("* ...", "asgorepol", 21);
-			scr_text("* It was nothing. Really.", "asgorepol", 19);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
+			scr_text("* It was nothing.|* Really.", "asgorepol", 19);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* ...", "toriel", 10);
 			scr_text("* How can I trust you?", "toriel", 12);
 			scr_text("* ...", "asgorepol", 6);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* Toriel, if you just let me explain all of this to you...", "asgorepol", 16);
-			scr_text("* You've tried, Asgore. So many times.", "toriel", 10);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right_accuse, false);
+			scr_text("* You've tried, Asgore.|* So many times.", "toriel", 10);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* But this all just sounds like some...", "toriel", 15);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* ...conspiratory garba", "toriel", 6);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_handsonface_right, false);
 				scr_text_cutoff_skip(23);
 			scr_text("* This is NOT conspiratory! This is NOT garbage!", "asgorepol", 25);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_yelling_right, false);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_shocked_left, false);
 			scr_text("* This is real, damn it!", "asgorepol", 10);
 			scr_text("* I've. Seen. The fountains!", "asgorepol", 12);
 			scr_text("* One was in my own SHOP, for crying out loud!", "asgorepol", 25);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_yelling_right_crying, false);
 			scr_text("* And I made it! It wasn't even that hard to make!", "asgorepol", 9);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_left_worried, false);
 			scr_text("* Asgore, you're spiraling again.", "toriel", 9);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_crying_right, false);
 			scr_text("* I'm...", "asgorepol", 18);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_onknees_extraheaddown_crying_right, false);
 			scr_text("* ...", "asgorepol", 6);
+		break;
+		
+		case "self_9":
 			scr_text("* So come with me. Let me show you the truth of the matter.", "asgorepol", 23);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_gettingup_extraheaddown_handsonface_right, false);
 			scr_text("* ...What do you mean?", "toriel", 12);
 			scr_text("* I can make another fountain right now. At the Flower Shop.", "asgorepol", 31);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_gesture_right, false);
 			scr_text("* You just need to co", "asgorepol", 24);
 				scr_text_cutoff_skip(21);
 			scr_text("* If what you say is true, Asgore...", "toriel", 6);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* I am NOT leaving these kids alone in the house.", "toriel", 14);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_mad_left, false);
 			scr_text("* If these \"fountains\" are truly as dangerous as you say they are,", "toriel", 7);
-			scr_text("* Then clearly something isn't right in our neighborhood.", "toriel", 6);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_left_worried, false);
+			scr_text("* then clearly something isn't right in our neighborhood.", "toriel", 6);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_mad_left, false);
 			scr_text("* Our family will not be vulnerable to what's out there.", "toriel", 14);
 			scr_text("* ...", "toriel", 10);
-			scr_text("* But it's not true. None of it is.", "toriel", 15);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_left_worried, false);
+			scr_text("* But it's not true.|* None of it is.", "toriel", 15);
 			scr_text("* Toriel, that's not fair", "asgorepol", 16);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_double_gesture_right, false);
 				scr_text_cutoff_skip(25);
 			scr_text("* Fair?", "toriel", 6);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_mad_left, false);
 			scr_text("* Don't bring up \"fair\", Asgore.", "toriel", 14);
 			scr_text("* ...", "asgorepol", 4);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
 			scr_text("* I would never compromise our safety just for proof, Toriel.", "asgorepol", 14);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* But you still need to believe me.", "asgorepol", 24);
 			scr_text("* If you just come with me to the Flower Shop, I can", "asgorepol", 23);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_gesture_right, false);
 				scr_text_cutoff_skip(52);
 			scr_text("* Asgore.", "toriel", 3);
 			scr_text("* This is...", "toriel", 12);
 			scr_text("* ...", "toriel", 10);
 			scr_text("* Why are you doing this?", "toriel", 12);
+				scr_obj_sprite_on_page(obj_toriel, spr_toriel_walk_left_worried, false);
 			scr_text("* It's...", "asgorepol", 20);
-				// (Asgore turns away)
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 			scr_text("* I...", "asgorepol", 6);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_left, false);
 			scr_text("* You what?", "toriel", 9);
 			scr_text("* I'll... write it down.", "asgorepol", 6);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_right, false);
 			scr_text("* I'd prefer not to... say it out loud.", "asgorepol", 5);
-		break;scr_text("* I'll... write it down.", "asgorepol", 6);
-			scr_text("* I'd prefer not to... say it out loud.", "asgorepol", 5);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_head_down_right, false);
 		break;
 		
 		// (Asgore writes it down, and Toriel walks over to look at it)
-		case "self_9":
+		case "self_10":
 			scr_text("* ...", "toriel", 3);
 			scr_text("* !", "toriel", 13);
 			scr_text("* A-Asgore...", "toriel", 8);
@@ -240,7 +310,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		// (Asgore runs out of the house)
-		case "self_10":
+		case "self_11":
 			scr_text("* Asgore!", "toriel", 13);
 			// (the screen fades out)
 		break;
