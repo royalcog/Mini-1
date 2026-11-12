@@ -719,6 +719,8 @@
     {"name":"spr_asgore_police_right_surprised","order":30,"path":"sprites/spr_asgore_police_right_surprised/spr_asgore_police_right_surprised.yy",},
     {"name":"spr_asgore_police_right_worried","order":31,"path":"sprites/spr_asgore_police_right_worried/spr_asgore_police_right_worried.yy",},
     {"name":"spr_asgore_police_right","order":26,"path":"sprites/spr_asgore_police_right/spr_asgore_police_right.yy",},
+    {"name":"spr_asgore_police_walk_left","order":35,"path":"sprites/spr_asgore_police_walk_left/spr_asgore_police_walk_left.yy",},
+    {"name":"spr_asgore_police_walk_right","order":36,"path":"sprites/spr_asgore_police_walk_right/spr_asgore_police_walk_right.yy",},
     {"name":"spr_asgore_police_walk_up","order":33,"path":"sprites/spr_asgore_police_walk_up/spr_asgore_police_walk_up.yy",},
     {"name":"spr_asgore_police_yelling_right_crying","order":34,"path":"sprites/spr_asgore_police_yelling_right_crying/spr_asgore_police_yelling_right_crying.yy",},
     {"name":"spr_asgore_police_yelling_right","order":32,"path":"sprites/spr_asgore_police_yelling_right/spr_asgore_police_yelling_right.yy",},

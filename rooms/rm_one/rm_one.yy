@@ -12,7 +12,6 @@
     {"name":"inst_24CC30BB","path":"rooms/rm_one/rm_one.yy",},
     {"name":"inst_766AB755","path":"rooms/rm_one/rm_one.yy",},
     {"name":"inst_37B2B7EF","path":"rooms/rm_one/rm_one.yy",},
-    {"name":"inst_81D13E1","path":"rooms/rm_one/rm_one.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -25,7 +24,6 @@
         {"$GMRInstance":"v4","%Name":"inst_24CC30BB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_24CC30BB","objectId":{"name":"obj_carol","path":"objects/obj_carol/obj_carol.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":470.0,"y":304.0,},
         {"$GMRInstance":"v4","%Name":"inst_766AB755","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_766AB755","objectId":{"name":"obj_rudy","path":"objects/obj_rudy/obj_rudy.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":516.0,"y":356.0,},
         {"$GMRInstance":"v4","%Name":"inst_37B2B7EF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_37B2B7EF","objectId":{"name":"obj_toriel","path":"objects/obj_toriel/obj_toriel.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":310.0,"y":304.0,},
-        {"$GMRInstance":"v4","%Name":"inst_81D13E1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_81D13E1","objectId":{"name":"obj_torhousechairs","path":"objects/obj_torhousechairs/obj_torhousechairs.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":520.0,"y":240.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":300,"effectEnabled":true,"effectType":null,"gridX":40,"gridY":40,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
