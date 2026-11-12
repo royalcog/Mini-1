@@ -538,6 +538,7 @@
     {"id":{"name":"obj_titanspawn_attack5","path":"objects/obj_titanspawn_attack5/obj_titanspawn_attack5.yy",},},
     {"id":{"name":"obj_titanspawn_attack6","path":"objects/obj_titanspawn_attack6/obj_titanspawn_attack6.yy",},},
     {"id":{"name":"obj_torhouse","path":"objects/obj_torhouse/obj_torhouse.yy",},},
+    {"id":{"name":"obj_torhousechairs","path":"objects/obj_torhousechairs/obj_torhousechairs.yy",},},
     {"id":{"name":"obj_toriel","path":"objects/obj_toriel/obj_toriel.yy",},},
     {"id":{"name":"obj_tower_top_scene","path":"objects/obj_tower_top_scene/obj_tower_top_scene.yy",},},
     {"id":{"name":"obj_tp_bar","path":"objects/obj_tp_bar/obj_tp_bar.yy",},},

@@ -423,6 +423,7 @@
     {"name":"obj_titanspawn_attack3","order":1,"path":"objects/obj_titanspawn_attack3/obj_titanspawn_attack3.yy",},
     {"name":"obj_titanspawn_attack6","order":2,"path":"objects/obj_titanspawn_attack6/obj_titanspawn_attack6.yy",},
     {"name":"obj_torhouse","order":20,"path":"objects/obj_torhouse/obj_torhouse.yy",},
+    {"name":"obj_torhousechairs","order":21,"path":"objects/obj_torhousechairs/obj_torhousechairs.yy",},
     {"name":"obj_toriel","order":1,"path":"objects/obj_toriel/obj_toriel.yy",},
     {"name":"obj_tower_top_scene","order":2,"path":"objects/obj_tower_top_scene/obj_tower_top_scene.yy",},
     {"name":"obj_tp_bar","order":2,"path":"objects/obj_tp_bar/obj_tp_bar.yy",},
