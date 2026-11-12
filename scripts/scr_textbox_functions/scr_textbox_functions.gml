@@ -769,10 +769,14 @@ function scr_char_move_after_textbox(_obj, _sprite, _loop, _dx, _dy, _speed, _du
     }
 }
 
-function scr_char_move_now(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05, _ease = "none")
+/// _keep_frame: don't restart the animation at frame 0 when this move starts (carry on the walk cycle from the last leg)
+/// _keep_going: don't freeze the animation when this move ends (another leg starts right after it)
+function scr_char_move_now(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05, _ease = "none", _keep_frame = false, _keep_going = false)
 {
     if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
     array_push(obj_cutscenehandler_midfightattacks.move_queue_active, {
+        keep_frame: _keep_frame,
+        keep_going: _keep_going,
         obj: _obj,
         sprite: _sprite,
         loop: _loop,

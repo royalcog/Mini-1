@@ -1312,7 +1312,7 @@ for (var i = array_length(move_queue_active) - 1; i >= 0; i--)
         if (!_m.started)
         {
             _m.obj.sprite_index = _m.sprite;
-            _m.obj.image_index = 0;
+            if (!(_m[$ "keep_frame"] ?? false)) _m.obj.image_index = 0;
             _m.obj.image_speed = _m.loop ? 1 : 0;
             _m.obj.anim_loop = _m.loop;
             _m.started = true;
@@ -1434,7 +1434,7 @@ for (var i = array_length(move_queue_active) - 1; i >= 0; i--)
                     }
                 }
 
-                if (!_has_next_move)
+                if (!_has_next_move && !(_m[$ "keep_going"] ?? false))
                 {
                     _m.obj.image_index = 0;
                     _m.obj.image_speed = 0;
