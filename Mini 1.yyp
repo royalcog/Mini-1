@@ -1550,6 +1550,7 @@
     {"id":{"name":"spr_titantower_gradient","path":"sprites/spr_titantower_gradient/spr_titantower_gradient.yy",},},
     {"id":{"name":"spr_titantower_piece","path":"sprites/spr_titantower_piece/spr_titantower_piece.yy",},},
     {"id":{"name":"spr_torhouse","path":"sprites/spr_torhouse/spr_torhouse.yy",},},
+    {"id":{"name":"spr_torhousechairs","path":"sprites/spr_torhousechairs/spr_torhousechairs.yy",},},
     {"id":{"name":"spr_toriel_dialogue_body","path":"sprites/spr_toriel_dialogue_body/spr_toriel_dialogue_body.yy",},},
     {"id":{"name":"spr_toriel_dialogue_glasses","path":"sprites/spr_toriel_dialogue_glasses/spr_toriel_dialogue_glasses.yy",},},
     {"id":{"name":"spr_toriel_dialogue","path":"sprites/spr_toriel_dialogue/spr_toriel_dialogue.yy",},},
