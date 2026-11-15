@@ -386,13 +386,57 @@ function scr_game_text(_text_id)
 			scr_text("* You need a mental refresh.", "toriel", 4);
 			scr_text("* ...", "asgorepol", 15);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_extraheaddown_right, false);
+			
+			// --- Asgore turns and walks down, away from the oven (y 290 -> 356 = 66px at 2px/frame = 33 frames) ---
+			// (down to the same line Rudy and Carol left along, so he can run straight out to the door)
+			// Z can't start self_11 until he's stopped
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				var _dur = 33;
+				obj_asgore.image_index = 1;   // mid-step
+				scr_char_move_now(obj_asgore, spr_asgore_police_dark_walk_down, true, 0, (356 - obj_asgore.y) / _dur, 1, _dur, false, 0.05, "none", true, false);
+			}, 0);
+			// stops, still facing down
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				with (obj_asgore) { sprite_index = spr_asgore_police_dark_walk_down; image_index = 0; image_speed = 0; }
+			}, 34);
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 40);
 		break;
 		
 		// (Asgore runs out of the house)
 		case "self_11":
 			scr_text("* Asgore!", "toriel", 13);
 				scr_obj_sprite_on_page(obj_toriel, spr_toriel_shocked_right, false);
-			// (the screen fades out)
+				
+				// the moment her line comes up, he bolts for the door (x 1000, just offscreen right, same as Rudy and Carol)
+				// everything after this runs on timers (call_later), so it carries on whether or not her textbox is still open
+				array_push(obj_cutscenehandler_midfightattacks.sprite_queue_delayed, {
+					page: global.page_number - 1,
+					delay: 1,
+					is_custom_call: true,
+					call_func: function()
+					{
+						global.cutscene_lock = true;   // nothing else after this, just the fade
+						
+						var _run_speed = 6;                                     // px per frame
+						var _run_frames = ceil((1000 - obj_asgore.x) / _run_speed);
+						var _door_gap  = 60;                                    // frames between the door opening and closing (~1 second)
+						var _fade_wait = 25;                                    // frames after the door shuts before the screen starts fading
+						
+						scr_char_move_now(obj_asgore, spr_asgore_police_dark_running, true, 1, 0, _run_speed, _run_frames);
+						// the running sprite's only 5fps, which looks slow at this speed: play it double speed
+						call_later(2, time_source_units_frames, function() { if (instance_exists(obj_asgore)) obj_asgore.image_speed = 2; });
+						
+						// reaches the door: yanks it open...
+						call_later(_run_frames, time_source_units_frames, function() { audio_play_sound(snd_dooropen, 1, false); });
+						// ...and slams it shut behind him
+						call_later(_run_frames + _door_gap, time_source_units_frames, function() { audio_play_sound(snd_doorclose, 1, false); });
+						// then the screen fades out (and stays black)
+						call_later(_run_frames + _door_gap + _fade_wait, time_source_units_frames, function() { scr_fade_out_to_black(c_black, true); });
+					}
+				});
 		break;
 /*
 
