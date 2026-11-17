@@ -10,7 +10,7 @@ door_speed  = 0.15;   // door opens/shuts fast
 
 window_dark   = 0;    // 0-1, how black the window is
 window_target = 0;
-window_speed  = 1 / 50; // ~1 second, during the loud part of snd_fountain_make_mini
+window_speed  = 1 / 50; // ~1 second, during the loud part of snd_fountain_make
 
 /// a black rectangle (in spr_town_north pixels) that sways with the dream shader like the background does
 draw_sway_rect = function(_l, _t, _r, _b, _alpha)

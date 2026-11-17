@@ -295,6 +295,8 @@ function scr_game_text(_text_id)
 			// Z can't start self_10 until Toriel's looking at the paper
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			
+			var _write = 180; // extra frames he spends writing at the oven before stepping away (60 = 1 second)
+			
 			// Asgore: right along the floor, over to the oven (to x 395), 72 frames (starts mid-step)
 			scr_custom_call_after_textbox_delayed(function()
 			{
@@ -320,17 +322,19 @@ function scr_game_text(_text_id)
 				instance_create_depth(395, 212, -101, obj_paper);
 			}, 130);
 			
+			// (writes for _write frames)
+			
 			// steps off to the left (395 -> 295 = 100px at 2px/frame = 50 frames; stays clear of the fridge)
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				obj_asgore.image_index = 1;
 				scr_char_move_now(obj_asgore, spr_asgore_police_walk_left, true, -1, 0, 2, 50, false, 0.05, "none", true, false);
-			}, 150);
+			}, 150 + _write);
 			// turns back to face Toriel
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				with (obj_asgore) { sprite_index = spr_asgore_police_right; image_index = 0; image_speed = 0; }
-			}, 201);
+			}, 201 + _write);
 			
 			// --- Toriel: left along the floor, over to the oven (to x 400), 120 frames (starts mid-step) ---
 			scr_custom_call_after_textbox_delayed(function()
@@ -338,21 +342,21 @@ function scr_game_text(_text_id)
 				var _dur = 120;
 				obj_toriel.image_index = 1;
 				scr_char_move_now(obj_toriel, spr_toriel_walk_left_worried, true, (400 - obj_toriel.x) / _dur, 0, 1, _dur, false, 0.05, "none", true, true);
-			}, 225);
+			}, 225 + _write);
 			// then up to the oven (to y 290), 33 frames
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				var _dur = 33;
 				scr_char_move_now(obj_toriel, spr_toriel_walk_up, true, 0, (290 - obj_toriel.y) / _dur, 1, _dur, false, 0.05, "none", true, false);
-			}, 345);
+			}, 345 + _write);
 			// stands looking at the paper
 			scr_custom_call_after_textbox_delayed(function()
 			{
 				with (obj_toriel) { sprite_index = spr_toriel_walk_up; image_index = 0; image_speed = 0; }
-			}, 379);
+			}, 379 + _write);
 			
 			// Z can open self_10
-			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 400);
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", false, 400 + _write);
 		break;
 		
 		// (Asgore writes it down, and Toriel walks over to look at it)
@@ -515,7 +519,7 @@ function scr_game_text(_text_id)
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				audio_play_sound(snd_fountain_make_mini, 1, false);
+				audio_play_sound(snd_fountain_make, 1, false);
 				with (obj_flowershop_fx) window_target = 1;
 			}, 40);
 			// (whatever comes next goes here; cutscene_lock stays on until then)
