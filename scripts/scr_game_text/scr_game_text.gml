@@ -541,12 +541,10 @@ function scr_game_text(_text_id)
 			scr_text("* I think I'm gonna go back to work.", "asgore", 12);
 			scr_text("* Come on, Asgore", "flowery", 19);
 				// turns away from Flowery
-				scr_set_var_on_page(obj_asgore, "image_xscale", 2);
 				scr_text_cutoff_skip(17);
 			scr_text("* Flowery.", "asgore", 11);
 			scr_text("* I've already told you too much.", "asgore", 22);
 				// turns back to Flowery
-				scr_set_var_on_page(obj_asgore, "image_xscale", -2);
 			scr_text("* And, as you said...", "asgore", 13);
 			scr_text("* You're not real.", "asgore", 20);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_down, false);
@@ -599,19 +597,41 @@ function scr_game_text(_text_id)
 			{
 				// Asgore (still flipped to face right): 430 -> 910, 2px/frame (starts mid-step)
 				obj_asgore.image_index = 1;
-				scr_char_move_now(obj_asgore, spr_asgore_armor_walk_left, true, 1, 0, 2, 240, false, 0.05, "none", true, false);
+				scr_char_move_now(obj_asgore, spr_asgore_armor_walk_right, true, 1, 0, 2, 240, false, 0.05, "none", true, false);
 			}, 20);
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				// Flowery follows a beat later: 510 -> 910
-				obj_flowery.image_index = 1;
-				scr_char_move_now(obj_flowery, spr_flowery_walk_down_right, true, 1, 0, 2, 200, false, 0.05, "none", true, false);
-			}, 35);
-			// once they're both offscreen
-			scr_custom_call_after_textbox_delayed(function()
-			{
-				scr_fade_out_to_black(c_black, true);
-			}, 270);
+				// Flowery waits until Asgore walks past him, holds a second, then follows him out
+				var _follow_wait = 60; // frames after Asgore passes before Flowery starts walking (60 = 1 second)
+				
+				var _ts = time_source_create(time_source_game, 1, time_source_units_frames, function(_wait)
+				{
+					if (!instance_exists(obj_asgore) || !instance_exists(obj_flowery)) return;
+					if (obj_asgore.x < obj_flowery.x) return; // hasn't passed him yet
+					
+					// he's passed: Flowery turns to watch him go
+					obj_flowery.sprite_index = spr_flowery_sad_down_right;
+					obj_flowery.image_index  = 0;
+					
+					call_later(_wait, time_source_units_frames, function()
+					{
+						// Flowery follows: 510 -> 910
+						obj_flowery.image_index = 1;
+						scr_char_move_now(obj_flowery, spr_flowery_walk_down_right, true, 1, 0, 2, 200, false, 0.05, "none", true, false);
+						
+						// once he's offscreen too
+						call_later(205, time_source_units_frames, function()
+						{
+							scr_fade_out_to_black(c_black, true);
+						});
+					});
+					
+					time_source_destroy(global.flowery_follow_ts);
+				}, [_follow_wait], -1);
+				
+				global.flowery_follow_ts = _ts;
+				time_source_start(_ts);
+			}, 21);
 		break;
 /*
 
