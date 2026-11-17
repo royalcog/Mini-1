@@ -241,7 +241,7 @@ function scr_game_text(_text_id)
 			scr_text("* So come with me. Let me show you the truth of the matter.", "asgorepol", 23);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_dark_gettingup_extraheaddown_handsonface_right, false);
 			scr_text("* ...What do you mean?", "toriel", 12);
-			scr_text("* I can make another fountain right now. At the Flower Shop.", "asgorepol", 31);
+			scr_text("* I can make another fountain right now.|* At the Flower Shop.", "asgorepol", 31);
 				scr_obj_sprite_on_page(obj_asgore, spr_asgore_police_gesture_right, false);
 			scr_text("* You just need to co", "asgorepol", 24);
 				scr_text_cutoff_skip(21);
