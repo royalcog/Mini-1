@@ -1,3 +1,6 @@
+// already have one from an earlier visit to this room: don't make a second copy
+if (instance_number(object_index) > 1) { instance_destroy(); exit; }
+
 // draws the game at an exact whole-number scale (853x480 at 2x = 1706x960 on a 1080p screen) so pixel art and
 // text come out even (before, everything was stretched 2.25x into 1920x1080).
 // to go back to how it was: set enabled = false

@@ -46,3 +46,22 @@ function scr_debug_skip_to_flowershop()
     _f.target_room = rm_two;
     _f.spawn_list  = scr_flowershop_spawn_list();
 }
+
+/// DEBUG: jump straight back to rm_zero after the flashback (next Z opens self_14)
+function scr_debug_skip_to_flowery_talk()
+{
+    global.cutscene_lock  = true;
+    global.flashback_done = true;
+    global.dialogue_self  = 13; // next Z opens self_14
+    with (obj_textbox) instance_destroy();
+    with (obj_cutscenefade) instance_destroy();
+    with (obj_flashback_dark) instance_destroy();
+    scr_text_hide_face(false);
+    scr_debug_music_reset();
+    
+    var _f = instance_create_depth(0, 0, -9999, obj_cutscenefade);
+    _f.fade_target = 1;
+    _f.fade_alpha  = 1;
+    _f.target_room = rm_zero;
+    call_later(110, time_source_units_frames, function() { global.cutscene_lock = false; });
+}

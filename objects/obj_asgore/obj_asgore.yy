@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_asgore_walk_right_mad",
-    "path":"sprites/spr_asgore_walk_right_mad/spr_asgore_walk_right_mad.yy",
+    "name":"spr_asgore_armor_walk_right_mad",
+    "path":"sprites/spr_asgore_armor_walk_right_mad/spr_asgore_armor_walk_right_mad.yy",
   },
   "spriteMaskId":null,
   "visible":true,

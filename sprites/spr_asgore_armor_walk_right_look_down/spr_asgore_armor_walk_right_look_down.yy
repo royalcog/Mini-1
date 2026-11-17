@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_asgore_armor_walk_mad",
+  "%Name":"spr_asgore_armor_walk_right_look_down",
   "bboxMode":0,
   "bbox_bottom":60,
   "bbox_left":0,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"fb7d2e97-0036-4454-93a4-b9950fa48fd4","blendMode":0,"displayName":"default","isLocked":false,"name":"fb7d2e97-0036-4454-93a4-b9950fa48fd4","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_asgore_armor_walk_mad",
+  "name":"spr_asgore_armor_walk_right_look_down",
   "nineSlice":null,
   "origin":9,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_asgore_armor_walk_mad",
+    "%Name":"spr_asgore_armor_walk_right_look_down",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_asgore_armor_walk_mad",
+    "name":"spr_asgore_armor_walk_right_look_down",
     "playback":1,
     "playbackSpeed":5.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c340ffb0-3576-49ab-adb0-2803d2ae925a","path":"sprites/spr_asgore_armor_walk_mad/spr_asgore_armor_walk_mad.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c340ffb0-3576-49ab-adb0-2803d2ae925a","path":"sprites/spr_asgore_armor_walk_right_look_down/spr_asgore_armor_walk_right_look_down.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"10a414ff-6638-463a-a278-435f03fe67c2","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f4ac381-d920-4bec-8bcf-ac08ee43c0c7","path":"sprites/spr_asgore_armor_walk_mad/spr_asgore_armor_walk_mad.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f4ac381-d920-4bec-8bcf-ac08ee43c0c7","path":"sprites/spr_asgore_armor_walk_right_look_down/spr_asgore_armor_walk_right_look_down.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"4fb973e0-8bd4-42a8-bc7e-e413c963162e","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9c1492dc-0cd6-43f5-a998-613fc43453e9","path":"sprites/spr_asgore_armor_walk_mad/spr_asgore_armor_walk_mad.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9c1492dc-0cd6-43f5-a998-613fc43453e9","path":"sprites/spr_asgore_armor_walk_right_look_down/spr_asgore_armor_walk_right_look_down.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"1945996c-4db6-4b10-ae0e-abfe5f09c00d","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9a15f244-4f76-4f69-a43d-9bdb2e49bbe5","path":"sprites/spr_asgore_armor_walk_mad/spr_asgore_armor_walk_mad.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9a15f244-4f76-4f69-a43d-9bdb2e49bbe5","path":"sprites/spr_asgore_armor_walk_right_look_down/spr_asgore_armor_walk_right_look_down.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ebdb19e2-b9a4-4e71-b9ee-645018d5bc04","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

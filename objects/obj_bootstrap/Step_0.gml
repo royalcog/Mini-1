@@ -25,3 +25,4 @@ if (keyboard_check_pressed(vk_f6)) scr_debug_skip_to_tower_top(true);
 if (keyboard_check_pressed(vk_f7)) scr_debug_skip_to_tower_top(false, true);
 if (keyboard_check_pressed(vk_f8)) scr_debug_skip_to_titan2();
 if (keyboard_check_pressed(vk_f9)) scr_debug_skip_to_flowershop();
+if (keyboard_check_pressed(vk_f10)) scr_debug_skip_to_flowery_talk();

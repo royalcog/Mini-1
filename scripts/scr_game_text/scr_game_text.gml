@@ -487,15 +487,131 @@ function scr_game_text(_text_id)
 		case "self_13":
 			scr_text("* ...maybe you all will.", "asgorepol", 23);
 			
-			// the dark fountain gets made: sfx, then the shop window goes black during the part where it opens
+			// the dark fountain gets made: sfx, the shop window goes black, then back to the real world
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				var _open_at = 96; // frames into snd_fountain_make when the window starts going black (96 = 1.6s, the thump)
+				var _open_at = 96;  // frames into snd_fountain_make when the window starts going black (96 = 1.6s, the thump)
+				var _back_at = 540; // frames into it when we head back to rm_zero (9s, once it's died down)
+				
 				audio_play_sound(snd_fountain_make, 1, false);
 				call_later(_open_at, time_source_units_frames, function() { with (obj_flowershop_fx) window_target = 1; });
+				
+				// fade out, hold on black, fade back into rm_zero with Asgore & Flowery where we left them
+				call_later(_back_at, time_source_units_frames, function()
+				{
+					if (instance_exists(obj_cutscenefade)) return;
+					global.flashback_done = true;
+					var _f = instance_create_depth(0, 0, -9999, obj_cutscenefade);
+					_f.fade_target   = 1;
+					_f.target_room   = rm_zero;
+					_f.wait_duration = 240; // frames on black (4 seconds)
+					
+					// Z can open self_14 once rm_zero's faded in (100 out + 240 black + 100 in)
+					call_later(445, time_source_units_frames, function() { global.cutscene_lock = false; });
+				});
 			}, 40);
-			// (whatever comes next goes here; cutscene_lock stays on until then)
+		break;
+		
+		// (back in the real world)
+		case "self_14":
+			scr_text("* ...", "asgore", 47);
+			scr_text("* ...and I regret it to this day.", "asgore", 46);
+			scr_text("* Listen, buddy.", "flowery", 18);
+			scr_text("* I know we're not perfect. Us flowers.", "flowery", 29);
+			scr_text("* And I know we're not in your real world.", "flowery", 24);
+			scr_text("* But we're trying to make this all better for you.", "flowery", 17);
+			scr_text("* Your research is great, and I think you should keep at it.", "flowery", 1);
+			scr_text("* But to the point of self-destruction?", "asgore", 22);
+				// turns to face Flowery (his armor sprites only face left, so right = flipped)
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_up_expressions, false, 2);
+			scr_text("* I can't...", "asgore", 13);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_up_expressions, false, 3);
+			scr_text("* I don't understand why I've done this to myself.", "asgore", 20);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_up, false);
+			scr_text("* It's the only way to prove your worth to them, Gorey.", "flowery", 19);
+			scr_text("* And, hey. You can try talking about it to Carol or Undyne again.", "flowery", 11);
+			scr_text("* I doubt they'll mind.", "flowery", 0);
+			scr_text("* ...", "asgore", 47);
+			scr_text("* Flowery, I appreciate the naivety, but...", "asgore", 12);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_up_expressions, false, 3);
+			scr_text("* ...", "asgore", 13);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_up, false);
+			scr_text("* I think...", "asgore", 21);
+			scr_text("* I think I'm gonna go back to work.", "asgore", 12);
+			scr_text("* Come on, Asgore", "flowery", 19);
+				// turns away from Flowery
+				scr_set_var_on_page(obj_asgore, "image_xscale", 2);
+				scr_text_cutoff_skip(17);
+			scr_text("* Flowery.", "asgore", 11);
+			scr_text("* I've already told you too much.", "asgore", 22);
+				// turns back to Flowery
+				scr_set_var_on_page(obj_asgore, "image_xscale", -2);
+			scr_text("* And, as you said...", "asgore", 13);
+			scr_text("* You're not real.", "asgore", 20);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_down, false);
+			scr_text("* None of this is.", "asgore", 21);
+			scr_text("* The only thing here that is real is my proof...", "asgore", 36);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_right_look_down, false);
+			scr_text("* ...which you've conveniently blown all over the place.", "asgore", 8);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_right_mad, false);
+			scr_text("* Did you mix the letters up too?", "asgore", 8);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_yell, false);
+			scr_text("* Did you", "asgore", 8);
+				scr_text_cutoff_skip(9);
+			scr_text("* Asgore, I would never do that to you.", "flowery", 24);
+			scr_text("* Things get transformed when they enter a Dark World from the Light.", "flowery", 17);
+			scr_text("* Then why aren't my papers alive as well?", "asgore", 9);
+			scr_text("* Well, that's", "flowery", 29);
+				scr_text_cutoff_skip(14);
+			scr_text("* And what about all of the other objects as well?", "asgore", 9);
+			scr_text("* What about my gardening cans, or my tools, or", "asgore", 8);
+				scr_text_cutoff_skip(47);
+			scr_text("* Some of the things did change, Asgore.", "flowery", 18);
+			scr_text("* Just not all of them.", "flowery", 29);
+			scr_text("* And who controls that?", "asgore", 22);
+			scr_text("* Nobody.", "flowery", 0);
+			scr_text("* It's predetermined when a Dark World is created,", "flowery", 17);
+			scr_text("* regardless of who actually creates it.", "flowery", 11);
+			scr_text("* ...", "asgore", 47);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_right_mad, false);
+			scr_text("* This fountain was never meant to come back to reality.", "asgore", 46);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_right_look_down, false);
+			scr_text("* Gorey, I", "flowery", 19);
+				scr_text_cutoff_skip(10);
+			scr_text("* Enough, Flowery.", "asgore", 8);
+			scr_text("* I need to figure out what happened here.", "asgore", 22);
+			scr_text("* Let me get back to my work.", "asgore", 12);
+			scr_text("* ...", "asgore", 13);
+			scr_text("* And next time, don't blow my papers away.", "asgore", 11);
+				scr_obj_sprite_on_page(obj_asgore, spr_asgore_armor_walk_right_mad, false);
+			scr_text("* ...", "flowery", 29);
+				scr_obj_sprite_on_page(obj_flowery, spr_flowery_sad_down_left, false);
+			scr_text("* Sorry, Goregore.", "flowery", 24);
+			scr_text("* I'll help you find your papers.", "flowery", 1);
+				scr_obj_sprite_on_page(obj_flowery, spr_flowery_walk_down_left, false);
+			scr_text("* ...", "asgore", 47);
+			scr_text("* Thank you.", "asgore", 21);
+			
+			// --- they walk off to the right (back to his work), then fade to black ---
+			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				// Asgore (still flipped to face right): 430 -> 910, 2px/frame (starts mid-step)
+				obj_asgore.image_index = 1;
+				scr_char_move_now(obj_asgore, spr_asgore_armor_walk_left, true, 1, 0, 2, 240, false, 0.05, "none", true, false);
+			}, 20);
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				// Flowery follows a beat later: 510 -> 910
+				obj_flowery.image_index = 1;
+				scr_char_move_now(obj_flowery, spr_flowery_walk_down_right, true, 1, 0, 2, 200, false, 0.05, "none", true, false);
+			}, 35);
+			// once they're both offscreen
+			scr_custom_call_after_textbox_delayed(function()
+			{
+				scr_fade_out_to_black(c_black, true);
+			}, 270);
 		break;
 /*
 

@@ -1693,7 +1693,7 @@ global.text_voices = {
 		stop_prev:   true,   // audio_stop_sound on all of them before playing
 		pitch_min:   0.9,    // 0.9 + random(0.15), same as the original
 		pitch_range: 0.15,
-		delay:       2,      // letters skipped between blips (2 = every 3rd letter, ~ sound_timer = 3)
+		delay:       3,      // letters skipped after each blip (3 = every 4th letter, same as the original sound_timer = 3)
 	},
 	// copy the block above to add more, e.g.
 	// carol: { sounds: [snd_carol1, snd_carol2], stop_prev: true, pitch_min: 1, pitch_range: 0.1, delay: 2 },
