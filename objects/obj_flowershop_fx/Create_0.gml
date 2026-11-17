@@ -32,3 +32,5 @@ draw_sway_rect = function(_l, _t, _r, _b, _alpha)
     draw_set_alpha(1);
     draw_set_colour(c_white);
 }
+
+debug_show = true; // TEMP: red outline where the window/door effects draw

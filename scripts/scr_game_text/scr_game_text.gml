@@ -445,23 +445,8 @@ function scr_game_text(_text_id)
 							var _f = instance_create_depth(0, 0, -9999, obj_cutscenefade);
 							_f.fade_target   = 1;
 							_f.target_room   = rm_two;
-							_f.wait_duration = 60; // frames on black before rm_two
-							_f.spawn_list = [
-								scr_make_warp_spawn(obj_flowershop_fx, 0, 0, "Instances"),
-								scr_make_warp_spawn(obj_asgore, 0, 0, "Instances", function(_i)
-								{
-									// on the sidewalk, right in front of the shop door, facing it
-									var _p = scr_town_north_to_room(1268, 133);
-									_i.x = _p[0];
-									_i.y = _p[1];
-									_i.sprite_index = spr_asgore_police_walk_up;
-									_i.image_index  = 0;
-									_i.image_speed  = 0;
-									
-									// Z can open self_12 once the fade-in's done (100 frames)
-									call_later(100, time_source_units_frames, function() { global.cutscene_lock = false; });
-								}),
-							];
+							_f.wait_duration = 240; // frames on black before rm_two (60 = 1 second, so 4 seconds)
+							_f.spawn_list = scr_flowershop_spawn_list();
 						});
 					}
 				});
@@ -480,34 +465,21 @@ function scr_game_text(_text_id)
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			scr_custom_call_after_textbox_delayed(function()
 			{
-				var _door = scr_town_north_to_room(1268, 118); // the bottom of the door
+				var _door = scr_town_north_to_room(1268, 118); // the base of the door
 				var _spd  = 1.5;                               // px per frame
 				var _dur  = ceil((obj_asgore.y - _door[1]) / _spd);
 				
-				// up to the door (starts mid-step)
+				// across the street and up to the door (starts mid-step);
+				// the moment his feet touch the base of the door he fades into the dark (and is destroyed)
 				obj_asgore.image_index = 1;
-				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, 0, -1, _spd, _dur, false, 0.05, "none", true, true);
+				scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, 0, -1, _spd, _dur, true, 0.08, "none", true, false);
 				
-				// the door opens right before he gets there
-				call_later(max(1, _dur - 8), time_source_units_frames, function()
-				{
-					audio_play_sound(snd_dooropen, 1, false);
-					with (obj_flowershop_fx) door_target = 1;
-				});
-				// one more step into the doorway, then he fades into the dark (and is destroyed)
-				call_later(_dur + 1, time_source_units_frames, function()
-				{
-					if (instance_exists(obj_asgore))
-						scr_char_move_now(obj_asgore, spr_asgore_police_walk_up, true, 0, -1, 1.5, 10, true, 0.08, "none", true, false);
-				});
-				// the door shuts behind him
-				call_later(_dur + 45, time_source_units_frames, function()
-				{
-					audio_play_sound(snd_doorclose, 1, false);
-					with (obj_flowershop_fx) door_target = 0;
-				});
+				// the doorway goes dark right before he gets there...
+				call_later(max(1, _dur - 8), time_source_units_frames, function() { with (obj_flowershop_fx) door_target = 1; });
+				// ...and closes behind him
+				call_later(_dur + 35, time_source_units_frames, function() { with (obj_flowershop_fx) door_target = 0; });
 				// Z can open self_13
-				call_later(_dur + 75, time_source_units_frames, function() { global.cutscene_lock = false; });
+				call_later(_dur + 65, time_source_units_frames, function() { global.cutscene_lock = false; });
 			}, 20);
 		break;
 		
@@ -515,12 +487,13 @@ function scr_game_text(_text_id)
 		case "self_13":
 			scr_text("* ...maybe you all will.", "asgorepol", 23);
 			
-			// the dark fountain gets made: sfx + the shop window goes black
+			// the dark fountain gets made: sfx, then the shop window goes black during the part where it opens
 			scr_set_var_after_textbox_delayed(noone, "cutscene_lock", true, 0);
 			scr_custom_call_after_textbox_delayed(function()
 			{
+				var _open_at = 96; // frames into snd_fountain_make when the window starts going black (96 = 1.6s, the thump)
 				audio_play_sound(snd_fountain_make, 1, false);
-				with (obj_flowershop_fx) window_target = 1;
+				call_later(_open_at, time_source_units_frames, function() { with (obj_flowershop_fx) window_target = 1; });
 			}, 40);
 			// (whatever comes next goes here; cutscene_lock stays on until then)
 		break;
