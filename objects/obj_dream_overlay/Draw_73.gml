@@ -2,6 +2,16 @@ var _cam = view_camera[0];
 var _vx = camera_get_view_x(_cam), _vy = camera_get_view_y(_cam);
 var _vw = camera_get_view_width(_cam), _vh = camera_get_view_height(_cam);
 
+// night gradient: multiplies a blue gradient over the whole room (dark at the top, lighter at the bottom)
+if (night_gradient && night_strength > 0)
+{
+    var _top = merge_colour(c_white, night_top, night_strength);
+    var _bot = merge_colour(c_white, night_bottom, night_strength);
+    gpu_set_blendmode_ext(bm_dest_colour, bm_zero); // multiply
+    draw_rectangle_colour(_vx - 1, _vy - 1, _vx + _vw + 1, _vy + _vh + 1, _top, _top, _bot, _bot, false);
+    gpu_set_blendmode(bm_normal);
+}
+
 // dust motes (soft additive specks that sway and twinkle)
 gpu_set_blendmode(bm_add);
 for (var i = 0; i < array_length(motes); i++)

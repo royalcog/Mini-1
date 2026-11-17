@@ -716,6 +716,7 @@
     {"id":{"name":"snd_flowery_voicenoise_1","path":"sounds/snd_flowery_voicenoise_1/snd_flowery_voicenoise_1.yy",},},
     {"id":{"name":"snd_flowery_voicenoise_2","path":"sounds/snd_flowery_voicenoise_2/snd_flowery_voicenoise_2.yy",},},
     {"id":{"name":"snd_flowery_voicenoise_3","path":"sounds/snd_flowery_voicenoise_3/snd_flowery_voicenoise_3.yy",},},
+    {"id":{"name":"snd_fountain_make_mini","path":"sounds/snd_fountain_make_mini/snd_fountain_make_mini.yy",},},
     {"id":{"name":"snd_friendlaugh","path":"sounds/snd_friendlaugh/snd_friendlaugh.yy",},},
     {"id":{"name":"snd_gerson","path":"sounds/snd_gerson/snd_gerson.yy",},},
     {"id":{"name":"snd_gersonlaugh","path":"sounds/snd_gersonlaugh/snd_gersonlaugh.yy",},},

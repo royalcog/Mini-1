@@ -12,6 +12,7 @@ vignette_alpha = 0.75;  // darkness at the very edges
 mote_count     = 35;    // floating dust specks (0 = none)
 mote_alpha     = 0.35;
 
+
 motes = [];
 var _cam = view_camera[0];
 for (var i = 0; i < mote_count; i++)
@@ -40,3 +41,9 @@ u_post_glow      = shader_get_uniform(shd_dream_post, "u_glow");
 u_post_thresh    = shader_get_uniform(shd_dream_post, "u_thresh");
 
 application_surface_draw_enable(false); // Post Draw draws the screen instead, through the shader
+
+// ===== night gradient (multiplied over everything in the room, textbox stays untouched) =====
+night_gradient = (room == rm_two); // only rm_two gets the night gradient
+night_top      = make_colour_rgb(120, 130, 210); // top of the screen (darker, cooler)
+night_bottom   = make_colour_rgb(190, 195, 245); // bottom of the screen (lighter)
+night_strength = 1;                              // 0 = off, 1 = full gradient

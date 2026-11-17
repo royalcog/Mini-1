@@ -560,6 +560,7 @@
     {"name":"snd_flowery_myking","order":3,"path":"sounds/snd_flowery_myking/snd_flowery_myking.yy",},
     {"name":"snd_flowery_voicenoise_2","order":1,"path":"sounds/snd_flowery_voicenoise_2/snd_flowery_voicenoise_2.yy",},
     {"name":"snd_flowery_voicenoise_3","order":2,"path":"sounds/snd_flowery_voicenoise_3/snd_flowery_voicenoise_3.yy",},
+    {"name":"snd_fountain_make_mini","order":82,"path":"sounds/snd_fountain_make_mini/snd_fountain_make_mini.yy",},
     {"name":"snd_friendlaugh","order":14,"path":"sounds/snd_friendlaugh/snd_friendlaugh.yy",},
     {"name":"snd_gerson","order":5,"path":"sounds/snd_gerson/snd_gerson.yy",},
     {"name":"snd_gersonlaugh","order":7,"path":"sounds/snd_gersonlaugh/snd_gersonlaugh.yy",},
