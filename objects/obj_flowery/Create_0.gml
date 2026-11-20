@@ -7,6 +7,6 @@ depth = -101;
 if (variable_global_exists("flashback_done") && global.flashback_done)
 {
     walking = false;
-    x = 510;
+    x = 560;
 }
-else scr_walk_in_setup(510, 500, 2.2);
+else scr_walk_in_setup(560, 500, 2.2);
